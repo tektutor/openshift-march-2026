@@ -269,3 +269,31 @@ docker start ubutnu2
 docker ps
 ```
 
+## Lab - Deleting a running container gracefully
+
+List the running containers
+```
+docker ps | grep jegan
+```
+
+Stop the container you wish to delete
+```
+docker stop ubuntu1
+```
+
+Delete the container 
+```
+docker rm ubuntu1 
+```
+
+## Lab - Deleting a running container forcibly
+
+List the running containers
+```
+docker ps | grep jegan
+```
+
+Delete the container forcibly
+```
+docker rm -f ubuntu1 
+```
