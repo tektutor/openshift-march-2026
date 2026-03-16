@@ -297,3 +297,5 @@ Delete the container forcibly
 ```
 docker rm -f ubuntu1 
 ```
+
+
