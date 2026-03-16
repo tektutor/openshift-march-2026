@@ -134,3 +134,6 @@
   - REST API
   - SOAP API
 </pre>
+
+## Info - Docker High-Level Architecture
+![Docker](DockerHighLevelArchitecture.png)
