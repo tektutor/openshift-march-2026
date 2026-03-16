@@ -10,5 +10,8 @@ https://forms.cloud.microsoft/r/yj6iCaxkJJ
 We have got two servers 
 </pre>
 
+#### Server 1
 ![Server 1](server1.png)
+
+#### Server 2
 ![Server 2](server2.png)
