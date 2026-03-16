@@ -318,4 +318,32 @@ docker rename ubuntu1 c1
 docker rename ubuntu2 c2
 ```
 
+## Lab - Let's create a mysql db server container
+```
+docker run -d --name mysql-jegan --hostname mysql-jegan -e MYSQL_ROOT_PASSWORD=root@123 mysql:latest
+docker ps
+```
+
+Get inside the mysql container shell, when it prompts for password you can type root@123
+```
+docker exec -it mysql-jegan /bin/sh
+mysql -u root -p
+
+SHOW DATABASES;
+CREATE DATABASE tektutor;
+USE tektutor;
+SHOW TABLES;
+
+CREATE TABLE trainings ( id INT NOT NULL, name VARCHAR(250) NOT NULL, duration VARCHAR(250) NOT NULL, PRIMARY KEY(id) );
+SHOW TABLES;
+
+INSERT INTO trainings VALUES ( 1, "DevOps", "5 Days" );
+INSERT INTO trainings VALUES ( 2, "Advanced Openshift", "5 Days" ); 
+INSERT INTO trainings VALUES ( 3, "Microserves in Golang", "5 Days" ); 
+
+SELECT * FROM trainings;
+
+exit
+exit
+```
 
