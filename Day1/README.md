@@ -70,7 +70,32 @@
     - this helps isolating one container from the other
 - the reason why, people tend to compare an Operating System or Virtual Machine with container technology is for the following reasons
   - each container has its own dedicated Network Stack ( Software defined Network Stack - Virtual )
-  - each container has its own dedicted NIC ( Network Card )
+  - each container has its own dedicated NIC ( Network Card )
   - each container acquires one or more IP Address ( mostly Private IPs ), depending on how many Network Cards it has 
   - every container uses about 7~8 namespaces
+- We need to understand two different software related to Container Technology
+  1. Container Runtime
+  2. Container Engine
+</pre>
+
+
+## Info - Container Runtime
+<pre>
+- Container Runtimes depend on the Linux Kernel features i.e CGroups and Namespace
+- Container Runtimes helps us manage Container Images and Containers
+- they are low-level software, hence they are not directly used by end-users like us as they are not so user-friendly
+- examples
+  - cRun
+  - runC
+  - CRI-O
+</pre>
+
+## Info - Container Engine
+<pre>
+- They are high-level, user-friendly softwares that helps us manage Container Images and Containers
+- Container Engine, internally depends on Container Runtime to manage Container Images and Containers
+- examples
+  - Docker - depends on Containerd, which in-turn depends on runC Container Runtime
+  - Podman - depends on CRI-O container Runtime
+  - Containerd - depends on runC Container Runtime
 </pre>
