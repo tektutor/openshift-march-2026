@@ -12,6 +12,7 @@ We have got two servers with below configurations
 - Intel Xeon Processor with 192 CPU Cores
 - 1 TB RAM
 - 21 TB HDD
+I have created about 14 users including me(trainer) on each server
 </pre>
 
 #### Server 1
