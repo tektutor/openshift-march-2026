@@ -231,7 +231,7 @@ In the above command
 <pre>
 docker - is the client tool
 run - command create the container and starts it
-it - interactive terminal
+dit - interactive terminal will be started in the background(daemon mode)
 name - is the way the docker server will refer the container
 hostname - is the way your OS will connect to the container just like how we access a VM/OS using its hostname or IP Address
 ubuntu:latest - is the name of the docker image, latest is the tag(version) of the Docker image
