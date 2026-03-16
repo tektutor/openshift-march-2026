@@ -249,3 +249,23 @@ To list all containers, even if they are not running currently
 ```
 docker ps -a | grep jegan
 ```
+
+## Lab - Stopping a running a container
+```
+docker ps
+docker stop ubuntu2
+docker ps
+```
+
+## Lab - Start an exited container
+List all containers
+```
+docker ps -a
+```
+
+Start the exited contianer
+```
+docker start ubutnu2
+docker ps
+```
+
