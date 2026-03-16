@@ -242,9 +242,10 @@ ubuntu:latest - is the name of the docker image, latest is the tag(version) of t
 To the list the running containers
 ```
 docker ps
+docker ps | grep jegan
 ```
 
 To list all containers, even if they are not running currently
 ```
-docker ps -a
+docker ps -a | grep jegan
 ```
