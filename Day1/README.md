@@ -198,3 +198,7 @@ docker info
 docker images
 ```
 
+## Lab - Listing the docker images from your Docker Local Registry
+```
+docker images
+```
