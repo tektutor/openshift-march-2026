@@ -32,4 +32,45 @@
     - VMWare Fusion ( supported in Mac OS-X )
     - Parallels ( supports in Mac OS-X )
     - Oracle VirtualBox ( supported in Windows, Linux and Mac OS-X )
+- this virtualization technoloyg disrupted the way the IT industry works
+- irrespective of Company size, pretty every organization started using this virtualization technology, which resulted in huge
+  cost saving
+- Server consolidation is possible with Virtualization Technoloyy
+- Modern high-end servers could host 2000+ virtual machines in a single server these days
+- Though the virtualization technology resulted in huge cost-saving, it has not brought the cost to the extent that every
+  engineer can be provided with 10~15 VMs
+- Developers would need to test their feature in different OS
+- QA team may have test the product on multiple OS 
+- In production environment, different software component like Web/App Servers, DB Servers, would require separate OS that runs in a separate VM/Physical Machine
+- This type of Virtualization is called Heavy weight Virtualization
+  - each VM must be allocated with dedicated Hardware resources
+    - CPU cores
+    - RAM
+    - Storage Hard disk / SSD 
+  - each VM, represents one fully functional Operating System
+  - each Guest OS that runs on the VM, has its own Network Stack, Network Cards, it has its own OS Kernel, etc.,
+</pre>
+
+## Info - Containerization
+<pre>
+- it is an application virtualization technology
+- this is light-weigth virtualization, as container does't required dedicated hardware resources
+- in other words, all containers that runs in the same machine/os shares the hardware resources on the underlying Host/Guest OS
+- each container represents one application process not an Operating System
+- technically, comparing a container with Virtual Machine, Guest OS or Host OS is ideally wrong
+- Linux Kernels supports 2 interesting features, which are required by any Container Engine/Runtime
+  - Control Groups ( CGroups )
+    - this helps applying resource quota restrictions on individual container level
+    - for example
+      - using CGroups, we can restrict how many CPUs one container can use at the max at point of time
+      - using CGroups, we can restrict how much RAM a container can use at the max
+      - using CGroups, we can restrict how mauch disk space a container can be utilizat at the max
+      - all these helps, one container use up all the storage, cpu or RAM etc, leaving no resources for other containers
+  - Namespace
+    - this helps isolating one container from the other
+- the reason why, people tend to compare an Operating System or Virtual Machine with container technology is for the following reasons
+  - each container has its own dedicated Network Stack ( Software defined Network Stack - Virtual )
+  - each container has its own dedicted NIC ( Network Card )
+  - each container acquires one or more IP Address ( mostly Private IPs ), depending on how many Network Cards it has 
+  - every container uses about 7~8 namespaces
 </pre>
