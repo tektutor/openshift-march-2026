@@ -405,7 +405,7 @@ exit
 exit
 ```
 
-Troubleshooting Innodb end issue ( I have already fixed it - this is just for your reference )
+Troubleshooting Mysql Innodb crash issue ( I have already fixed it - this is just for your reference )
 The linux kernel parameter restricts how many Asynchronous IO operations can happen in parallel. Increasing this limits solves the issue.
 ```
 cat /proc/sys/fs/aio-max-nr
