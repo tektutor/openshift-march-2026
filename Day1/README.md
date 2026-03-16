@@ -300,10 +300,22 @@ docker rm -f ubuntu1
 
 
 ## Lab - Rename a container
+
+In case, you dont' have ubuntu1 and ubuntu2 containers, you may create now or you can skip this step you have them already
+```
+docker run -dit --name ubuntu1-jegan --hostname ubuntu1-jegan ubuntu:latest /bin/bash
+docker run -dit --name ubuntu2-jegan --hostname ubuntu1-jegan ubuntu:latest /bin/bash
+```
+
+List the containers
+```
+docker ps
+```
+
+Rename the containers
 ```
 docker rename ubuntu1 c1
 docker rename ubuntu2 c2
-
-docker ps
 ```
+
 
