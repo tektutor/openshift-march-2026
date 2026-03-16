@@ -299,3 +299,11 @@ docker rm -f ubuntu1
 ```
 
 
+## Lab - Rename a container
+```
+docker rename ubuntu1 c1
+docker rename ubuntu2 c2
+
+docker ps
+```
+
