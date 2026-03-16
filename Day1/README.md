@@ -404,3 +404,9 @@ SELECT * from trainings;
 exit
 exit
 ```
+
+Troubleshooting Innodb end issue
+```
+cat /proc/sys/fs/aio-max-nr
+sysctl -w fs.aio-max-nr=262144
+```
