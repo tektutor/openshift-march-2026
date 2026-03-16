@@ -14,11 +14,14 @@
 - there are 2 types of Hypervsisorts
   1. Type 1 ( a.k.a Bare-Metal Hypervisors )
   2. Type 2 ( a.k.a Hosted Hypervsiors
+- In order to do install any Hypervisor, we need a machine that supports Processor with Virtualization support
+  - In case of Intel Processor, the virtualization feature set is called VT-X
+  - In case of AMD Processor, the virtualization feature set is called AMD-V
 - Type 1
   - is meant to be used in Workstations and Servers
   - this type of Hypervisor comes with a minimal OS, hence we don't need to install Host OS, instead we can directly install the Hypervisor
   - examples
-    - VMWare vsphere(vCenter)
+    - VMWare vSphere(vCenter)
     - Microsoft Hyper-V
     - Linux KVM
 - Type 2
