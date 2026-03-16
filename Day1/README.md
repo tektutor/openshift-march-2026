@@ -191,7 +191,7 @@ sudo systemctl status docker
 
 sudo usermod -aG docker $USER
 id
-sudo su $USER
+su $USER
 id
 docker --version
 docker info
