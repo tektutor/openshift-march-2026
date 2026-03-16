@@ -135,5 +135,29 @@
   - SOAP API
 </pre>
 
+## Info - Docker Registry
+<pre>
+- Docker Registry is a collection of many Docker Images
+- There are 3 types of registries
+  1. Local Docker Registry ( /var/lib/docker folder in Linux )
+  2. Private Docker Registery ( could be setup using JFrog Artifactory or Sonatype Nexus )
+  3. Docker Hub - Remote Registry ( Docker Hub Website )
+</pre>
+
+## Info - Docker Overview
+<pre>
+- Docker is developed in Golang by an organization called Docker Inc
+- comes in 2 flavours
+  1. Docker Community Edition - Docker CE ( opensource )
+  2. Docker Enterprise Edition- Docker EE ( requires license )
+     - comes with enterpise registry with access to certified Docker images ( access to Docker certified images )
+     - world-wide support from Docker Inc
+- it follows Client/Server Architecture
+  - docker - is the client tool
+  - dockerd - is the Docker Server that runs as a background service 
+- In local machines, docker client and server communicates by default using a socket
+- In remote machines, docker client and server communicates using REST API
+</pre>
+
 ## Info - Docker High-Level Architecture
 ![Docker](DockerHighLevelArchitecture.png)
