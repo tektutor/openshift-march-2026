@@ -362,3 +362,45 @@ USE tektutor;
 SELECT * FROM trainings;
 ```
 
+## Lab - Using external storage to store your database, table, record, etc
+```
+mkdir -p /tmp/jegan/mysql
+docker run -d --name mysql-jegan --hostname mysql-jegan -e MYSQL_ROOT_PASSWORD=root@123 -v /tmp/jegan/mysql:/var/lib/mysql mysql:latest
+docker ps
+docker exec -it mysql-jegan /bin/sh
+mysql -u root -p
+
+SHOW DATABASES;
+CREATE DATABASE tektutor;
+USE tektutor;
+SHOW TABLES;
+
+CREATE TABLE trainings ( id INT NOT NULL, name VARCHAR(250) NOT NULL, duration VARCHAR(250) NOT NULL, PRIMARY KEY(id) );
+SHOW TABLES;
+
+INSERT INTO trainings VALUES ( 1, "DevOps", "5 Days" );
+INSERT INTO trainings VALUES ( 2, "Advanced Openshift", "5 Days" ); 
+INSERT INTO trainings VALUES ( 3, "Microserves in Golang", "5 Days" ); 
+
+SELECT * FROM trainings;
+
+exit
+exit
+docker rm -f mysql-jegan
+```
+
+Let's create a new mysql container
+```
+docker run -d --name mysql-jegan1 --hostname mysql-jegan1 -e MYSQL_ROOT_PASSWORD=root@123 -v /tmp/jegan/mysql:/var/lib/mysql mysql:latest
+docker ps
+docker exec -it mysql1-jegan /bin/sh
+mysql -u root -p
+
+SHOW DATABASES;
+CREATE DATABASE tektutor;
+USE tektutor;
+SHOW TABLES;
+SELECT * from trainings;
+exit
+exit
+```
