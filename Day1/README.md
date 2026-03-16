@@ -347,3 +347,18 @@ exit
 exit
 ```
 
+List the mysql container
+```
+docker ps -f "name=mysql-jegan"
+docker restart mysql-jegan
+```
+
+Connect to mysql server, you are supposed to see the tektutor database and training table along with the records intact
+```
+docker exec -it mysql /bin/sh
+mysql -u root -p
+SHOW DATABASES;
+USE tektutor;
+SELECT * FROM trainings;
+```
+
