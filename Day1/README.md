@@ -99,3 +99,28 @@
   - Podman - depends on CRI-O container Runtime
   - Containerd - depends on runC Container Runtime
 </pre>
+
+## Info - Container Image
+<pre>
+- is the blueprint of a Container, similar to OS ISO files we download for installing Ubuntu or Windows OS
+- using a Container Image, we can create multiple containers
+- Container Image names might in some case resemble like an OS, they Container Images don't represent a OS
+  - OS Container Image will have mostly the following software tools
+    - Package Manager 
+      - used to install/uninstall/upgrade softwares
+    - comes with minimal linux commands
+    - never comes with OS Kernel or full sets of linux commands
+- Container Images are conservatively built to reduce the size of image, hence few commands are supported within a container
+- Usually Container Image will have
+  - One main application with all its dependent libraries and Web/App Servers(if required) to run one single application
+</pre>
+
+
+## Info - Containers
+<pre>
+- Container is a running instance of a Container Image
+- Whatever softwares were pre-installed, pre-configured in the Container Image are available in the Container
+- Each container gets it own IP Address
+- Each container gets it own File System ( folders and utilities )
+- Each container gets it own Port Range ( 0 to 65535 Porst just like an OS )
+</pre>
