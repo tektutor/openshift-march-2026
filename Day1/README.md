@@ -232,8 +232,9 @@ In the above command
 docker - is the client tool
 run - command create the container and starts it
 dit - interactive terminal will be started in the background(daemon mode)
-name - is the way the docker server will refer the container
+name - is the way the docker server will refer the container, to avoid conflicts name your conainer like ubuntu1-jegan
 hostname - is the way your OS will connect to the container just like how we access a VM/OS using its hostname or IP Address
+         - give the hostname as ubuntu1-jegan ( replace 'jegan' with your name )
 ubuntu:latest - is the name of the docker image, latest is the tag(version) of the Docker image
 /bin/bash - starts the bash terminal once the container starts running
 </pre>
