@@ -221,3 +221,29 @@ docker pull nginx:latest
 docker images
 docker pull mysql:latest
 ```
+
+## Lab - Create a container and run it in background(as a daemon)
+```
+docker run -dit --name ubuntu1 --hostname ubuntu1 ubuntu:latest /bin/bash
+```
+
+In the above command
+<pre>
+docker - is the client tool
+run - command create the container and starts it
+it - interactive terminal
+name - is the way the docker server will refer the container
+hostname - is the way your OS will connect to the container just like how we access a VM/OS using its hostname or IP Address
+ubuntu:latest - is the name of the docker image, latest is the tag(version) of the Docker image
+/bin/bash - starts the bash terminal once the container starts running
+</pre>
+
+To the list the running containers
+```
+docker ps
+```
+
+To list all containers, even if they are not running currently
+```
+docker ps -a
+```
