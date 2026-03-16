@@ -7,7 +7,11 @@ https://forms.cloud.microsoft/r/DQ7nywyP3U
 
 ## About about lab environment
 <pre>
-We have got two servers 
+We have got two servers with below configurations
+- Dell PowerEdge R840 Server
+- Intel Xeon Processor with 192 CPU Cores
+- 1 TB RAM
+- 21 TB HDD
 </pre>
 
 #### Server 1
