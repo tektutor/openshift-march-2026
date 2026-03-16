@@ -13,6 +13,8 @@ We have got two servers with below configurations
 - 1 TB RAM
 - 21 TB HDD
 I have created about 14 users including me(trainer) on each server
+Server 1 (192.168.0.200)
+Server 2 (192.168.0.201)
 </pre>
 
 #### Server 1
