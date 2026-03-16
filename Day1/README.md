@@ -123,4 +123,6 @@
 - Each container gets it own IP Address
 - Each container gets it own File System ( folders and utilities )
 - Each container gets it own Port Range ( 0 to 65535 Porst just like an OS )
+- General Recommned practive
+  - One main application per Container
 </pre>
