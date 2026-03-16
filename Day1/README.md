@@ -209,3 +209,15 @@ docker images
 ```
 docker images
 ```
+
+## Lab - Downloading docker images from Docker Hub Remote Registry to Local Docker Registry
+```
+docker images
+
+docker pull hello-world:latest
+docker pull ubuntu:latest
+docker pull nginx:latest
+
+docker images
+docker pull mysql:latest
+```
