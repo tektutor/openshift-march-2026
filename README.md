@@ -2,7 +2,7 @@
 
 ## Kindly complete the pre-test from your Lab Machine
 <pre>
-https://forms.cloud.microsoft/r/yj6iCaxkJJ  
+https://forms.cloud.microsoft/r/DQ7nywyP3U
 </pre>  
 
 ## About about lab environment
