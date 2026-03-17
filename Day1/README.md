@@ -32,7 +32,7 @@
     - VMWare Fusion ( supported in Mac OS-X )
     - Parallels ( supports in Mac OS-X )
     - Oracle VirtualBox ( supported in Windows, Linux and Mac OS-X )
-- this virtualization technoloyg disrupted the way the IT industry works
+- this virtualization technology disrupted the way the IT industry works
 - irrespective of Company size, pretty every organization started using this virtualization technology, which resulted in huge
   cost saving
 - Server consolidation is possible with Virtualization Technoloyy
