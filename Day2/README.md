@@ -91,6 +91,16 @@ image-registry.openshift-image-registry.svc:5000/openshift/mariadb:12.0.2
   - supports DeploymentConfig
   - supports Route
   - supports Project
+- older version of Openshift supported Docker, starting from version 4.x Openshift only supports CRI-O Container Runtime and Podman Container Engine
+- starting from Openshift v4.x, we can only install Red Hat Enteprise CoreOS operating system in master nodes
+- starting from Openshift v4.x, we can either install Red Hat Enterprise Linux or Red Hat Enterprise CoreOS in worker nodes
+- The Red Hat Enterprise Core OS comes with
+  - pre-installed CRI-O Container Runtime and Podman Container Engine
+- Red Hat recommends installing RHCOS in both type of nodes i.e master and worker nodes
+- In case, we opted to install RHCOS in all master and all worker nodes, upgrading Openshift from one version to other can be
+  using Openshift shift client tool oc or from Webconsole
+- Openshift also supports Virtualization
+  - it is possible to provision Windows or Linux Virtual Machines within Openshift
 </pre>
 
 
