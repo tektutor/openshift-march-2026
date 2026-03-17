@@ -252,3 +252,12 @@ oc describe node worker03.ocp4.palmeto.org
 <img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/ecd93d30-5f21-4bde-a329-28f77606e9f7" />
 <img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/f7e882d2-0922-4198-b43b-4b97485e8511" />
 <img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/6b031173-d819-454b-86ff-b5c53ae502de" />
+
+## Lab - Listing the container images present in the Openshift's Internal Container Registry
+```
+oc get imagestreams -n openshift
+oc get imagestream  -n openshift
+oc get is -n openshift
+```
+
+<img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/358b3ab3-3d70-419a-8469-33d433b37ef1" />
