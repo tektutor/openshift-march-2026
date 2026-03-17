@@ -423,3 +423,98 @@ sysctl -w fs.aio-max-nr=262144
   6. User Namespace
   7. CGroup Namespace
 </pre>  
+
+## Lab - Setup a LoadBalancer with 3 backend Webservers containers
+
+Let's create 3 web server containers using nginx:latest docker image
+```
+docker run -d --name nginx1-jegan --hostname nginx1-jegan nginx:latest
+docker run -d --name nginx2-jegan --hostname nginx2-jegan nginx:latest
+docker run -d --name nginx3-jegan --hostname nginx3-jegan nginx:latest
+```
+
+Let's create a Load Balancer container with port-forwarding to expose it for external access
+```
+docker run -d --name nginx-lb-jegan --hostname nginx-lb-jegan -p 8001:80 nginx:latest
+```
+
+Let's list all these containers
+```
+docker ps -f "name=jegan"
+docker ps | grep jegan
+```
+
+Find the IP Address of your nginx1-jegan, nginx2-jegan and nginx3-jegan containers and replace in the nginx.confi file below
+```
+docker inspect nginx1-jegan | grep IPA
+docker inspect nginx2-jegan | grep IPA
+docker inspect nginx3-jegan | grep IPA
+```
+
+Now, we need to configure the nginx-lb-jegan container as a Load Balancer( by default it works as Web Server ).
+In order to configure, let's copy the nginx.conf file from the nginx-lb-jegan container to our local machine.
+```
+docker cp nginx-lb-jegan:/etc/nginx/nginx.conf .
+```
+
+Edit the copied nginx.conf file as shown below
+```
+user  nginx;
+worker_processes  auto;
+
+error_log  /var/log/nginx/error.log notice;
+pid        /run/nginx.pid;
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    upstream backend {
+        server 172.17.0.8:80;
+        server 172.17.0.9:80;
+        server 172.17.0.10:80;
+    }
+
+    server {
+        location / {
+            proxy_pass http://backend;
+        }
+    }
+}
+```
+
+Let's copy this nginx.conf file back to the lb container
+```
+docker cp nginx.conf nginx-lb-jegan:/etc/nginx/nginx.conf
+```
+
+In order to force apply the config changes, let's restart the nginx lb container
+```
+docker restart nginx-lb-container
+```
+
+Check if your lb container is running after your config changes
+```
+docker ps | grep nginx-lb-jegan
+```
+
+
+Let's customize the index.html pages in nginx1-jegan, nginx2-jegan and nginx3-jegan
+```
+echo "Server 1" > index.html
+docker cp index.html nginx1-jegan:/usr/share/nginx/html
+
+echo "Server 2" > index.html
+docker cp index.html nginx2-jegan:/usr/share/nginx/html
+
+echo "Server 3" > index.html
+docker cp index.html nginx3-jegan:/usr/share/nginx/html
+```
+
+Test your LB configuration
+```
+curl http://192.168.0.200:8001
+curl http://192.168.0.200:8001
+curl http://192.168.0.200:8001
+```
