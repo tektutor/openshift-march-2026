@@ -242,6 +242,12 @@ kubectl get nodes -o wide
 oc get nodes
 
 oc describe node master01.ocp4.palmeto.org
+oc describe node master02.ocp4.palmeto.org
+oc describe node master03.ocp4.palmeto.org
+
+oc describe node worker01.ocp4.palmeto.org
+oc describe node worker02.ocp4.palmeto.org
+oc describe node worker03.ocp4.palmeto.org
 ```
 <img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/ecd93d30-5f21-4bde-a329-28f77606e9f7" />
 <img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/f7e882d2-0922-4198-b43b-4b97485e8511" />
