@@ -363,4 +363,9 @@ oc get pods
 
 <img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/4cd16617-de30-4a07-92d2-6fc8ee516f25" />
 
+Delete a deployment
+```
+oc delete deploy/nginx
+oc get deploy,rs,po
+```
 
