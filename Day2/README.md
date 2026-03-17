@@ -369,3 +369,17 @@ oc delete deploy/nginx
 oc get deploy,rs,po
 ```
 
+## Lab - What things can go wrong while deploying an application into Openshift
+
+Let's delete the existing nginx deployment
+```
+oc project jegan
+oc delete deploy nginx
+
+oc create deployment nginx --image=image-registry.openshift-image-registry.svc:5000/openshift/invalid-nginx:1.27 --replicas=3
+oc get deploy,rs,po
+```
+<img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/d622a99b-ea3a-40d8-9170-754049be68a6" />
+<img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/77d4329e-ffef-494c-afff-6c34d0e06d25" />
+
+
