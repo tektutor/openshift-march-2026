@@ -424,9 +424,9 @@ sysctl -w fs.aio-max-nr=262144
   7. CGroup Namespace
 </pre>  
 
-## Lab - Setup a LoadBalancer with 3 backend Webservers containers
+## Lab - Setup a LoadBalancer with 3 backend Webservers containers ( Port Forwarding )
 
-<img width="1896" height="1960" alt="image" src="https://github.com/user-attachments/assets/62574bd1-bbb4-452d-8b94-db87b8bff910" />
+<img width="2968" height="1960" alt="image" src="https://github.com/user-attachments/assets/be769574-258f-49fc-b212-ced75e7504ae" />
 
 
 Let's create 3 web server containers using nginx:latest docker image
