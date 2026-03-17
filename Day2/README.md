@@ -289,6 +289,7 @@ Switching between projects
 oc project openshift
 oc project jegan
 ```
+<img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/b82bfc6e-340f-4ea7-9455-ccd02d009a93" />
 
 Finding the currently active projects
 ```
@@ -301,12 +302,16 @@ oc get projects | grep jegan
 oc delete project jegan
 oc get projects | grep jegan
 ```
+<img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/ad69cf6f-53ff-4aa2-b6fe-7fc2c8531946" />
+
 
 ## Lab - Let's deploy our first application in Openshift under your project
 ```
 oc new-project jegan
 oc create deployment nginx --image=image-registry.openshift-image-registry.svc:5000/openshift/nginx:1.27 --replicas=3
 ```
+<img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/2620daf9-d458-42fd-90ca-3cdb56bfc60b" />
+
 
 List the deployments in your project namespace
 ```
@@ -328,3 +333,4 @@ oc get pods
 oc get pod
 oc get po
 ```
+<img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/cebeb90f-419a-4ff8-ad2d-7f036a1a91e1" />
