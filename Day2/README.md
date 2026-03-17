@@ -160,3 +160,59 @@ image-registry.openshift-image-registry.svc:5000/openshift/mariadb:12.0.2
   - which container image must be used to deploy your appication container within the pod
 - Deployment has one to many ReplicaSets
 </pre>
+
+## Info - Control Plane Components
+The below components only runs in the master node, or wherever they run that is called master node
+<pre>
+1. API Server
+2. etcd database
+3. Controller Managers
+4. Scheduler
+</pre>
+
+## Info - API Server
+<pre>
+- is is a Pod
+- is the heart/brain of Kubernetes or Openshift
+- it supports REST for every Openshift feature
+- API Server stores the Cluster and application states into the etcd key/value datastore
+- each time API Server does an update on the etcd database, it will be followed a broadcast event from API Server
+</pre>
+
+## Info - etcd
+<pre>
+- it is a Pod
+- it is an opensource independent project 
+- it was not developed for Kubernetes or Openshift
+- it can be used outside the scope of Kubernetes/Rancher/Openshift
+- this is where API Server stores all the information in the form of key/value
+- generally 3 instances of etcd databases are required by Openshift to support High Availability and to synchronize data between then
+</pre>
+
+## INfo - Controller Managers
+<pre>
+- it is a Pod
+- it is a collection of many Controllers
+- Controllers have unrestricted access to monitor specific type of resources created/managed under any project/namespace within openshift
+- Controller not only monitors application, they also repair them when required
+- Each Controller, manages one type of Kubernetes/Openshift Resource
+- Some controller part of Controller Managers are
+  - Deployment Controller
+  - ReplicaSet Controller
+  - Job Controller
+  - CronJob Controller
+  - Endpoint Controller
+  - DaemonSet Controller
+  - StatefulSet Controller
+- For example
+  - Deployment Controller manages Deployment
+  - Deployment Controller takes Deployment as the input ensures the desired state and actual state matches
+  - ReplicaSet Controller manages ReplicaSet
+</pre>
+
+## Info - Scheduler
+<pre>
+- it is a Pod
+- it is responsible to identify a healthy node where a newly created Pod can be scheduled
+- the scheduler makes a REST call to API Server with the scheduling recommendataion about a Pod
+</pre>
