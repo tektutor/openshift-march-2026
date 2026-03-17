@@ -111,4 +111,52 @@ image-registry.openshift-image-registry.svc:5000/openshift/mariadb:12.0.2
   - it is possible to provision Windows or Linux Virtual Machines within Openshift
 </pre>
 
+## Info - Openshift Terminologies
+<pre>
+- Pod
+- ReplicaSet
+- Deployment
+- DeploymentConfig
+- ReplicationController
+- Job
+- CronJob
+- StatefulSet
+- DaemonSet
+</pre>
 
+
+## Info - Pod
+<pre>
+- Pod is a group of related containers
+- the smallest unit that can be deployed in k8s or Openshift is a Pod
+- each Pod, has one secret infra container called pause-container
+- why it is called pause-container, is because it does nothing other than providing a network stack
+- technically, Pods can container many containers within a single Pod
+- IP Address is assigned on the Pod level, not on the container level
+- Pod is where containerized application will be running
+- each Pod should have just one application Pod
+- though technically possible to put many application container per Pod, as a best practice there should only
+  one application container per Pod to scale up/down individual applications
+- this is a JSON object that is stored and maintained in the etcd database by API Server
+- in otherwords, Pod is a logical grouping of containers that belong to an application
+</pre>
+
+## Info - ReplicaSet
+<pre>
+- is a JSON object that is stored and maintained by API Server in etcd database 
+- this JSON object captures the below details in high-level
+- how many instances of your application should be running within openshift
+- which container image must be used to deploy your application container within the pod
+- ReplicaSet has one to many Pods
+</pre>
+
+## Info - Deployment
+<pre>
+- is a JSON object that is stored and maintained by API Server in the etcd key/value database
+- this JSON object captures the below details
+  - name of the deployment( your application )
+  - this type of deployment is generally used by stateless applications
+  - how many instances of your application should be running within Openshift
+  - which container image must be used to deploy your appication container within the pod
+- Deployment has one to many ReplicaSets
+</pre>
