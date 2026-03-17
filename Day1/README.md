@@ -11,7 +11,7 @@
   - 4 x 2 = 8 virtual cores you have, which mean total OS that can run on this laptop is limited to 8 ( 1 Host OS +  7 Virtual Machines)
   - with the help of HyperThreading feature, each Physical CPU Core supports running 2 parallel threads, hence they are seen/considered as two virtual/logical Core by the Hypervisor software
   - We could install any Operating System within a Virtual Machine and they are called as Guest OS
-- there are 2 types of Hypervsisorts
+- there are 2 types of Hypervisors
   1. Type 1 ( a.k.a Bare-Metal Hypervisors )
   2. Type 2 ( a.k.a Hosted Hypervsiors
 - In order to do install any Hypervisor, we need a machine that supports Processor with Virtualization support
