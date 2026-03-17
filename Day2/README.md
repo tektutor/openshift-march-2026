@@ -225,3 +225,14 @@ oc version
 oc get nodes
 ```
 <img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/046009d2-9b6a-4b5e-af44-6386a69420f5" />
+
+
+## Lab - List the nodes in the cluster
+```
+oc get nodes
+kuebctl get nodes
+
+oc get nodes -o wide
+kubectl get nodes -o wide
+```
+<img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/c961132c-ddee-4f58-b694-5ae5fe2bd7fc" />
