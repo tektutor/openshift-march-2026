@@ -261,3 +261,12 @@ oc get is -n openshift
 ```
 
 <img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/358b3ab3-3d70-419a-8469-33d433b37ef1" />
+
+## Lab - Find how many versions(tags) are there for nginx image stream in our Openshift Internal Image Registry
+```
+oc describe imagestreams nginx -n openshift
+oc describe imagestream nginx -n openshift
+oc describe is nginx -n openshift
+```
+<img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/113f77f4-c3ae-480c-ab5f-937607cde7b5" />
+<img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/bdc089ad-9cf8-47eb-b6f7-14ad1c0779d0" />
