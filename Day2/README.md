@@ -270,3 +270,61 @@ oc describe is nginx -n openshift
 ```
 <img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/113f77f4-c3ae-480c-ab5f-937607cde7b5" />
 <img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/bdc089ad-9cf8-47eb-b6f7-14ad1c0779d0" />
+
+
+## Lab - Managing Openshift projects
+List the openshift projects
+```
+oc get projects
+oc get project
+```
+
+Creating a new-project
+```
+oc new-project jegan
+```
+
+Switching between projects
+```
+oc project openshift
+oc project jegan
+```
+
+Finding the currently active projects
+```
+oc project
+```
+
+Deleting your project only ( This will delete everything inside the project namespace called jegan, currently it is empty )
+```
+oc get projects | grep jegan
+oc delete project jegan
+oc get projects | grep jegan
+```
+
+## Lab - Let's deploy our first application in Openshift under your project
+```
+oc new-project jegan
+oc create deployment nginx --image=image-registry.openshift-image-registry.svc:5000/openshift/nginx:1.27 --replicas=3
+```
+
+List the deployments in your project namespace
+```
+oc get deployments
+oc get deployment
+oc get deploy
+```
+
+List the replicasets in your project namespace
+```
+oc get replicasets
+oc get replicaset
+oc get rs
+```
+
+List the pods running in your project namespace
+```
+oc get pods
+oc get pod
+oc get po
+```
