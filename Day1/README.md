@@ -426,6 +426,9 @@ sysctl -w fs.aio-max-nr=262144
 
 ## Lab - Setup a LoadBalancer with 3 backend Webservers containers
 
+<img width="1896" height="1960" alt="image" src="https://github.com/user-attachments/assets/62574bd1-bbb4-452d-8b94-db87b8bff910" />
+
+
 Let's create 3 web server containers using nginx:latest docker image
 ```
 docker run -d --name nginx1-jegan --hostname nginx1-jegan nginx:latest
@@ -518,3 +521,5 @@ curl http://192.168.0.200:8001
 curl http://192.168.0.200:8001
 curl http://192.168.0.200:8001
 ```
+<img width="480" height="300" alt="image" src="https://github.com/user-attachments/assets/c5b72cd2-d9d2-482f-b0fe-668800931250" />
+
