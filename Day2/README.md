@@ -216,3 +216,12 @@ The below components only runs in the master node, or wherever they run that is 
 - it is responsible to identify a healthy node where a newly created Pod can be scheduled
 - the scheduler makes a REST call to API Server with the scheduling recommendataion about a Pod
 </pre>
+
+## Lab - Check your lab environment
+```
+kubectl version
+oc version
+
+oc get nodes
+```
+<img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/046009d2-9b6a-4b5e-af44-6386a69420f5" />
