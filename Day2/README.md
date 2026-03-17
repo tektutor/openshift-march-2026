@@ -236,3 +236,13 @@ oc get nodes -o wide
 kubectl get nodes -o wide
 ```
 <img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/c961132c-ddee-4f58-b694-5ae5fe2bd7fc" />
+
+## Lab - Finding more details about the nodes in the Openshift cluster
+```
+oc get nodes
+
+oc describe node master01.ocp4.palmeto.org
+```
+<img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/ecd93d30-5f21-4bde-a329-28f77606e9f7" />
+<img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/f7e882d2-0922-4198-b43b-4b97485e8511" />
+<img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/6b031173-d819-454b-86ff-b5c53ae502de" />
