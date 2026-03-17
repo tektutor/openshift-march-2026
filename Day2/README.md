@@ -334,3 +334,11 @@ oc get pod
 oc get po
 ```
 <img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/cebeb90f-419a-4ff8-ad2d-7f036a1a91e1" />
+
+List multiple resources with a single command
+```
+oc get deploy,rs,po
+oc get all
+```
+<img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/b2d7abfa-3e0e-4c3a-a517-b673aa290f46" />
+
