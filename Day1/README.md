@@ -411,3 +411,15 @@ The linux kernel parameter restricts how many Asynchronous IO operations can hap
 cat /proc/sys/fs/aio-max-nr
 sysctl -w fs.aio-max-nr=262144
 ```
+
+## Info - Every container 
+<pre>
+- every containers uses seven namespaces
+  1. PID Namespace
+  2. Network Namespace
+  3. Mount Namespace
+  4. Unix Timesharing System (UTS)
+  5. IPC Namespace
+  6. User Namespace
+  7. CGroup Namespace
+</pre>  
