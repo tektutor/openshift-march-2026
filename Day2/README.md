@@ -342,3 +342,25 @@ oc get all
 ```
 <img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/b2d7abfa-3e0e-4c3a-a517-b673aa290f46" />
 
+
+Finding the Pod IP and the node where they are running
+```
+oc get pods -o wide
+```
+<img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/8407e576-1df0-4c4a-9507-aeda90a9b9b9" />
+
+Scale up a deployment
+```
+oc scale deploy/nginx --replicas=5
+oc get pods -w
+```
+
+Scale down a deployment
+```
+oc scale deploy/nginx --replicas=3
+oc get pods
+```
+
+<img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/4cd16617-de30-4a07-92d2-6fc8ee516f25" />
+
+
