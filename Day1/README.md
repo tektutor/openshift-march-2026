@@ -453,6 +453,7 @@ docker inspect nginx1-jegan | grep IPA
 docker inspect nginx2-jegan | grep IPA
 docker inspect nginx3-jegan | grep IPA
 ```
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/e39bc9a9-8e05-4ade-b22d-98ee976cd794" />
 
 Now, we need to configure the nginx-lb-jegan container as a Load Balancer( by default it works as Web Server ).
 In order to configure, let's copy the nginx.conf file from the nginx-lb-jegan container to our local machine.
