@@ -73,6 +73,14 @@ image-registry.openshift-image-registry.svc:5000/openshift/mariadb:12.0.2
   - Community - opensource variant
   - Enterprise variant which requires license
     - comes with world-wide support from Suse
+- supports
+  - K3S light-weight Kubernetes cluster
+  - RKE2 Kubernetes cluster which is highly secured Kubernetes
+  - a regular K8s Cluster that we deployed
+  - AWS eks managed K8s Cluster
+  - Azure aks managed K8s cluster
+  - GKE managed K8s cluster from Google Cloud
+  - Openshift Cluster
 </pre>
 
 ## Red Hat Openshift
