@@ -525,3 +525,10 @@ curl http://192.168.0.200:8001
 <img width="480" height="300" alt="image" src="https://github.com/user-attachments/assets/c5b72cd2-d9d2-482f-b0fe-668800931250" />
 <img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/477816d2-4c7b-469f-9d81-58ecc4c60b59" />
 
+## Lab - Checking docker container logs for troubleshooting
+```
+docker ps | grep jegan
+docker logs nginx1-jegan
+```
+
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/1beaa981-f3d6-4781-8ef0-a8e8784c5051" />
