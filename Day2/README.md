@@ -503,10 +503,22 @@ oc get deploy,rs,po
 
 Assuming you have 2 deployments i.e hello and nginx with 3 Pods each
 
-Let's find the label selector of nginx replicaset
+Let's find the label selector used by nginx deployment to identify nginx replicaset
+```
+oc describe deploy nginx | grep -i "Selector:"
+```
+
+This is how nginx deployment will retrieve its replicasets
+```
+oc get rs -l app=nginx,pod-template-hash=c68754854
+```
+
+Let's find the label selector used by nginx-c68754854 replicaset to identify its pods
 ```
 oc describe rs nginx-c68754854 | grep -i "Selector:"
 ```
 
-
-
+This is how nginx-c68754854 replicaset will retrieve its pods
+```
+oc get pods -l app=nginx,pod-template-hash=c68754854
+```
