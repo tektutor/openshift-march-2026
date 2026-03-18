@@ -490,8 +490,9 @@ localhost:33115
   - Pods are considered ephermeral (temporary), they can come and go at any point of time
   - Instead of accessing the mysql Pod IP, ideally the angular Pod must use the mysql service
   - behind the mysql service, there could 1 or 100s of mysql Pod, which is immaterial for angular application
-- Openshift will ensure the service name and remains stable, hence we could access the service by its name ( service discovery ) or using the
-  clusterip assigned to the service i.e IP
+- Openshift will ensure the service name and Service IP address remains stable, hence we could access the service by its name 
+  ( service discovery ) or using the clusterip assigned to the service i.e IP
+- the kube-proxy pod that runs in every node will support load-balancing of pods behind the service
 </pre>
 
 ## Lab - Deploy Hello application in your project
