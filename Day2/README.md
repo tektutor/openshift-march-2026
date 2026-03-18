@@ -510,7 +510,7 @@ oc describe deploy nginx | grep -i "Selector:"
 
 This is how nginx deployment will retrieve its replicasets
 ```
-oc get rs -l app=nginx,pod-template-hash=c68754854
+oc get rs -l app=nginx
 ```
 
 Let's find the label selector used by nginx-c68754854 replicaset to identify its pods
