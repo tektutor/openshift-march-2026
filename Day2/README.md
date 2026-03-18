@@ -551,3 +551,10 @@ exit
 ```
 <img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/463b40fb-fb64-4d70-a8a8-e18aa23ef549" />
 
+You could also get inside a specific pod shell
+```
+oc get pods -l app=hello
+oc exec -it hello-9bc9955dc-ljvwr -- sh
+```
+<img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/ac91e902-dd81-4e55-8d6d-78658ef388b9" />
+
