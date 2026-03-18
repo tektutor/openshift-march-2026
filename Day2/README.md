@@ -439,6 +439,14 @@ oc get deploy,rs,po
 
 
 ## Lab - For quick testing one could use port-forward ( Not for production )
+In case you don't have any application deployment under your project, you could deploy one now
+```
+oc project jegan
+oc create deployment nginx --image=image-registry.openshift-image-registry.svc:5000/openshift/invalid-nginx:1.27 --replicas=3
+oc get deploy,rs,po
+```
+
+Now you can 
 ```
 oc project jegan
 oc get pods
@@ -447,6 +455,12 @@ oc port-forward nginx-7cb45d7956-5hjwc 0:8080
 ```
 <img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/0a821a51-640a-4bb7-b86a-fab59c5c04ff" />
 <img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/c5e084f3-138f-49de-a5f1-764d22ab8cf5" />
+<img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/5792dfc6-a523-40e8-8d68-55bfca3572d3" />
+
+To test the port-forward, you can access from command-line or from one of the web browser on that server
+```
+localhost:33115
+```
 
 ## Info - Service
 <pre>
