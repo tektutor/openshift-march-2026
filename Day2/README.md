@@ -438,3 +438,10 @@ oc get deploy,rs,po
 <img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/77d4329e-ffef-494c-afff-6c34d0e06d25" />
 
 
+## Lab - For quick testing one could use port-forward ( Not for production )
+```
+oc project jegan
+oc port-forward nginx-7cb45d7956-5hjwc 8080:8080
+```
+<img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/0a821a51-640a-4bb7-b86a-fab59c5c04ff" />
+<img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/c5e084f3-138f-49de-a5f1-764d22ab8cf5" />
