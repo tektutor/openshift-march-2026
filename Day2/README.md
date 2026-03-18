@@ -7,6 +7,7 @@ image-registry.openshift-image-registry.svc:5000/openshift/nginx:1.28
 image-registry.openshift-image-registry.svc:5000/openshift/nginx:1.29
 image-registry.openshift-image-registry.svc:5000/openshift/wordpress:latest
 image-registry.openshift-image-registry.svc:5000/openshift/mariadb:12.0.2
+image-registry.openshift-image-registry.svc:5000/openshift/hello:1.0  
 </pre>
 
 ## Info - You may find this useful
@@ -470,5 +471,32 @@ localhost:33115
 
 ## Info - Service
 <pre>
-  
+- Service represents a group load-balanced pods that belongs a single deployment
+- Service helps us expose the application to internal use or external use
+- There are 3 types of services supported in Kubernetes and Openshift
+  1. ClusterIP ( Internal Service )
+  2. NodePort ( External Service )
+  3. LoadBalancer ( External Service )
 </pre>
+
+## Info - ClusterIP Service
+<pre>
+- this type of service is useful to restrict access only to the Pods running on the same Openshift/Kubernetes Cluster
+- example
+  - assume you have a angular application running as a Pod, that needs to retrieve some information from mysql Pod
+  - angular application is deployed with name angular, created one angular Pod
+  - mysql application is deploy with a name mysql, created one mysql Pod
+  - technically, it is possible that angular Pod can connect to mysql Pod directly using the mysql Pod IP ( This is not recommended )
+  - Pods are considered ephermeral (temporary), they can come and go at any point of time
+  - Instead of accessing the mysql Pod IP, ideally the angular Pod must use the mysql service
+  - behind the mysql service, there could 1 or 100s of mysql Pod, which is immaterial for angular application
+- Openshift will ensure the service name and remains stable, hence we could access the service by its name ( service discovery ) or using the
+  clusterip assigned to the service i.e IP
+</pre>
+
+## Lab - Deploy Hello application in your project
+```
+oc project jegan
+oc create deployment hello --image=image-registry.openshift-image-registry.svc:5000/openshift/hello:1.0 --replicas=3
+oc get deploy,rs,po
+```
