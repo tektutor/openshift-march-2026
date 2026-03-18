@@ -650,7 +650,7 @@ spec:
     singular: training
     shortNames:
     - train
-  version:
+  versions:
   - name: v1
     served: true
     storage: true
