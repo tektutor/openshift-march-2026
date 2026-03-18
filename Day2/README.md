@@ -500,3 +500,13 @@ oc project jegan
 oc create deployment hello --image=image-registry.openshift-image-registry.svc:5000/openshift/hello:1.0 --replicas=3
 oc get deploy,rs,po
 ```
+
+Assuming you have 2 deployments i.e hello and nginx with 3 Pods each
+
+Let's find the label selector of nginx replicaset
+```
+oc describe rs nginx-c68754854 | grep -i "Selector:"
+```
+
+
+
