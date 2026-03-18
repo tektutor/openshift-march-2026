@@ -632,3 +632,38 @@ Note
 <img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/7c7a8cbf-8ff2-4e95-a942-9fb9d9fe83ef" />
 <img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/ec3b0e26-3ef7-4edf-bce4-78893bb72526" />
 
+## Demo - Adding a Custom Resource called Training in our openshift cluster
+
+Create a file training-crd.yml
+<pre>
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: trainings.tektutor.org
+spec:
+  group: tektutor.org
+  scope: Namespaced
+  names:
+    kind: Training
+    listKind: TrainingList
+    plural: trainings
+    singular: training
+    shortNames:
+    - train
+  version:
+  - name: v1
+    served: true
+    storage: true
+    schema:
+      openAPIV3Schema:
+        type: object
+        properties:
+          training:
+            type: string
+          duration:
+            type: string
+          from: 
+            type: string
+          to:
+            type: string  
+</pre>
