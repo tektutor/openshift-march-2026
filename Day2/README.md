@@ -667,3 +667,18 @@ spec:
           to:
             type: string  
 </pre>
+
+
+Let's create couple of trainings, create a file named devops-training.yml
+<pre>
+apiVersion: tektutor.org/v1
+kind: Training 
+metadata:
+  name: devops-training 
+spec:
+  training: "Advanced DevOps"
+  duration: "5 Days" 
+  city: "Bengaluru"
+  from: "4th July 2026"
+  to: "8th July 2026"  
+</pre>
