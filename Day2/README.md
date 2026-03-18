@@ -9,6 +9,11 @@ image-registry.openshift-image-registry.svc:5000/openshift/wordpress:latest
 image-registry.openshift-image-registry.svc:5000/openshift/mariadb:12.0.2
 </pre>
 
+## Info - You may find this useful
+<pre>
+https://medium.com/tektutor/openshift-ci-cd-with-tekton-faa88ba45656
+</pre>  
+
 ## Info - Container Orchestration Platform Overview
 <pre>
 - In real world, Container Orchestration Platforms are used to manage our containerized application workloads
