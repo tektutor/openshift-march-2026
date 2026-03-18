@@ -63,22 +63,21 @@
   - Control Groups ( CGroups )
     - this helps applying resource quota restrictions on individual container level
     - for example
-      - using CGroups, we can restrict how many CPUs one container can use at the max at point of time
+      - using CGroups, we can restrict how many CPUs one container can use at the max at any point of time
       - using CGroups, we can restrict how much RAM a container can use at the max
-      - using CGroups, we can restrict how mauch disk space a container can be utilizat at the max
-      - all these helps, one container use up all the storage, cpu or RAM etc, leaving no resources for other containers
+      - using CGroups, we can restrict how much disk space a container can be utilize at the max
+      - this helps avoid, one container consuming all the storage, cpu or RAM etc, leaving no resources for other containers
   - Namespace
     - this helps isolating one container from the other
 - the reason why, people tend to compare an Operating System or Virtual Machine with container technology is for the following reasons
   - each container has its own dedicated Network Stack ( Software defined Network Stack - Virtual )
   - each container has its own dedicated NIC ( Network Card )
-  - each container acquires one or more IP Address ( mostly Private IPs ), depending on how many Network Cards it has 
+  - each container acquires one or more IP Addresses ( mostly Private IPs ), depending on how many Network Cards it has 
   - every container uses about 7~8 namespaces
 - We need to understand two different software related to Container Technology
   1. Container Runtime
   2. Container Engine
 </pre>
-
 
 ## Info - Container Runtime
 <pre>
@@ -105,17 +104,17 @@
 <pre>
 - is the blueprint of a Container, similar to OS ISO files we download for installing Ubuntu or Windows OS
 - using a Container Image, we can create multiple containers
-- Container Image names might in some case resemble like an OS, they Container Images don't represent a OS
+- Container Image names might in some case resemble like an OS, the Container Images don't represent a OS
   - OS Container Image will have mostly the following software tools
     - Package Manager 
       - used to install/uninstall/upgrade softwares
-    - comes with minimal linux commands
-    - never comes with OS Kernel or full sets of linux commands
-- Container Images are conservatively built to reduce the size of image, hence few commands are supported within a container
+    - comes with very minimal linux commands
+    - never comes with OS Kernel or full set of linux commands
+- Container Images are conservatively built to reduce the size of image, hence only minimal commands are 
+  supported within a container, but we can install required tools on demand by creating a custom image
 - Usually Container Image will have
   - One main application with all its dependent libraries and Web/App Servers(if required) to run one single application
 </pre>
-
 
 ## Info - Containers
 <pre>
