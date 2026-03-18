@@ -541,6 +541,7 @@ oc describe svc/nginx
 
 Testing the nginx internal service
 ```
+# This will take us inside one of the hello pod shell
 oc rsh deploy/hello
 
 curl http://nginx:8080
