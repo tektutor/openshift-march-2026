@@ -523,3 +523,17 @@ This is how nginx-c68754854 replicaset will retrieve its pods
 ```
 oc get pods -l app=nginx,pod-template-hash=c68754854
 ```
+
+## Lab - Creating an internal ClusterIP Service for nginx deployment
+```
+oc get deploy
+
+oc expose deploy/nginx --type=ClusterIP --port=8080
+
+oc get services
+oc get service
+oc get svc
+
+oc describe svc/nginx
+```
+
