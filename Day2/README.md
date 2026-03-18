@@ -60,6 +60,10 @@ https://www.tektutor.org/openshift-ci-cd-with-tekton/
     - user applications will be scheduled in this type of node
 - Kubernetes, supports extending Kubernetes API(features) by using Custom Resource Definitions and Custom Controllers
 - supports command-line only
+- Kubernetes encourages extending Kubernetes API(Features) by adding your Custom Resources in the Kubernetes cluster
+- Custom Resources can be adding by adding Custom Resource Definitions (CRD)
+- To manage Custom Resources, we also need to support Custom Controller
+- Normally Custom Resources and Custom Controllers are packaged as Operators or in some rare cases it could be even package as Helm charts
 </pre>
 
 
@@ -104,6 +108,7 @@ https://www.tektutor.org/openshift-ci-cd-with-tekton/
   - supports DeploymentConfig
   - supports Route
   - supports Project
+  - support S2I - BuildConfig & Build, Build Controller
 - older version of Openshift supported Docker, starting from version 4.x Openshift only supports CRI-O Container Runtime and Podman Container Engine
 - starting from Openshift v4.x, we can only install Red Hat Enteprise CoreOS operating system in master nodes
 - starting from Openshift v4.x, we can either install Red Hat Enterprise Linux or Red Hat Enterprise CoreOS in worker nodes
