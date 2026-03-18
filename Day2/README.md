@@ -594,3 +594,41 @@ curl http://worker02.ocp4.palmeto.org:32452
 curl http://worker03.ocp4.palmeto.org:32452
 ```
 <img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/5ede9997-2591-49a9-b1c8-588c5d48976a" />
+
+## Lab - Creating an external LoadBalancer service for nginx deployment
+
+First, let's delete the NodePort nginx service
+```
+oc project jegan
+oc get svc
+oc delete svc/nginx
+```
+
+Let's create the loadbalancer service for nginx
+```
+oc expose deploy/nginx --type=LoadBalancer --port=8080
+oc get svc
+oc describe svc/nginx
+```
+
+<img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/0ed4548e-f9c5-4763-be89-bd543a39d60f" />
+<img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/4f8d1601-4efa-4972-9817-8cba05a77ca8" />
+
+Note
+<pre>
+- By default, LoadBalancer service is not supported on a local openshift setup done in on-prem servers
+- Whenever you prefer to use an external Load Balancer like AWS ALB or Azure ALB, then you need to create LoadBalancer Service
+- LoadBalancer service is meant to be used in public cloud environment like AWS, Azure, etc.,
+  - In AWS, there is a managed Openshift Service called ROSA
+    - When we create a LoadBalancer service in ROSA, it will spin-up an ELB/ALB type of LoadBalancer in AWS public Cloud
+  - In Azure, there is a managed Openshift Service called ARO
+    - When we create a LoadBalancer service in ARO, it will spin-up a Azure Load Balancer in Azure public cloud
+- In case, you wish to use LoadBalancer service on your local Openshift setup, then we need to install MetalLB Operator
+</pre>
+<img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/e03b4edc-c9da-4215-b852-cdb7cfef7ca8" />
+<img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/de199118-82e3-4f71-98b6-dcfc1be35e76" />
+<img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/b1544993-baa4-4479-b5c2-4e985e92f48a" />
+<img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/c95715ef-690d-42c1-9cd7-619d50c1e043" />
+<img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/7c7a8cbf-8ff2-4e95-a942-9fb9d9fe83ef" />
+<img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/ec3b0e26-3ef7-4edf-bce4-78893bb72526" />
+
