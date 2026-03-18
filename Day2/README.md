@@ -376,6 +376,51 @@ oc get deploy,rs,po
 
 ## Lab - What things can go wrong while deploying an application into Openshift
 
+Following things may wrong
+<pre>
+Image and Registry Issues 
+- ImagePullBackOff
+  - This is the most common error
+  - happens if the image name is mistyped, the tag (like :latest or :v1) doesn't exist
+    or the internal registry isn't authenticated properly
+- ErrImagePull
+  - often points to networking issues or the registry being down or an invalid image
+
+Permission Issues
+- Security Context Constraints (SCC)
+  - By default, OpenShift forbids containers from running as root. 
+  - If your Dockerfile specifies USER root or tries to write to a protected directory, the Pod will crash immediately
+
+Missing ConfigMaps/Secrets
+- Your app might look for an environment variable or a database password that hasn't been created in the namespace yet
+
+Wrong Service Ports
+- The Service might be listening on port 80, but your application code is actually running on port 8080 
+</pre>
+
+Resource & Scheduling Limits
+- Insufficient Quotas
+  - If your Project (namespace) has a limit on CPU or Memory and your deployment asks for more than what's left,
+    the Pod will stay in Pending state.
+
+- OOMKilled (Out of Memory)
+  - Your application tried to use more RAM than the limit you set in the deployment YAML
+  - The kernel steps in and terminates the process.
+
+- CrashLoopBackOff
+  - This is a catch-all. It means the Pod started, failed, and OpenShift is trying to restart it repeatedly
+  - This is usually due to an internal application error (like a missing DB connection)
+
+Networking and Routes
+- Even if the Pod is Running, the world might not be able to see it.
+- Route Misconfiguration
+  - OpenShift Route must point to the correct Service
+  - If labels don't match, you'll get a 503 Service Unavailable error
+- Liveness/Readiness Probe Failures
+  - If your Readiness probe is pointing to the wrong path (e.g., /health instead of /actuator/health),
+    OpenShift will think the app is broken and won't send it any traffic.
+
+
 Let's delete the existing nginx deployment
 ```
 oc project jegan
