@@ -442,7 +442,7 @@ oc get deploy,rs,po
 In case you don't have any application deployment under your project, you could deploy one now
 ```
 oc project jegan
-oc create deployment nginx --image=image-registry.openshift-image-registry.svc:5000/openshift/invalid-nginx:1.27 --replicas=3
+oc create deployment nginx --image=image-registry.openshift-image-registry.svc:5000/openshift/nginx:1.27 --replicas=3
 oc get deploy,rs,po
 ```
 
