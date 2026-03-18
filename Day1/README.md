@@ -5,11 +5,11 @@
 - is Virtualization technology
 - this helps us run multiple OS on the same Laptop/Desktop/Workstation/Server
 - i.e more than one OS can be actively running side by side
-- let's we have a laptop with Quad Core CPUs, 8GB RAM and 500GB HDD/SDD, 
+- let's say we have a laptop has a Processor with Quad Core CPUs, 8GB RAM and 500GB HDD/SDD, 
   how many maximum Virtual Machines this laptop would support ?
-  - the deciding/limiting factor is the Processor supports how many CPU Cores?
-  - 4 x 2 = 8 virtual cores you have, which mean total OS that can run on this laptop is limited to 8 ( 1 Host OS +  7 Virtual Machines)
-  - with the help of HyperThreading feature, each Physical CPU Core supports running 2 parallel threads, hence they are seen/considered as two virtual/logical Core by the Hypervisor software
+  - the deciding/limiting factor is how many CPU Cores your Processor supports?
+  - 4 x 2 = 8 logical cores you have, which means total OS that can run on this laptop is limited to 8 ( 1 Host OS +  7 Virtual Machines)
+  - with the help of Intel HyperThreading(HT) feature or AMD Simultaneous Multithreading(SMT), each Physical CPU Core supports running 2 parallel threads, hence they are seen/considered as two virtual/logical Core by the Hypervisor software
   - We could install any Operating System within a Virtual Machine and they are called as Guest OS
 - there are 2 types of Hypervisors
   1. Type 1 ( a.k.a Bare-Metal Hypervisors )
@@ -25,7 +25,7 @@
     - Microsoft Hyper-V
     - Linux KVM
 - Type 2
-  - can be installed on top a Host OS ( Linux, Windows or Mac OS )
+  - can be installed on top of a Host OS ( Linux, Windows or Mac OS )
   - is meant to be used in Laptops, Desktops and Workstations
   - examples
     - VMware Workstation ( supported in Linux and Windows )
@@ -33,15 +33,16 @@
     - Parallels ( supports in Mac OS-X )
     - Oracle VirtualBox ( supported in Windows, Linux and Mac OS-X )
 - this virtualization technology disrupted the way the IT industry works
-- irrespective of Company size, pretty every organization started using this virtualization technology, which resulted in huge
-  cost saving
+- irrespective of the Company size, pretty much every organization started using this virtualization technology, 
+  which resulted in huge cost saving
 - Server consolidation is possible with Virtualization Technoloyy
 - Modern high-end servers could host 2000+ virtual machines in a single server these days
-- Though the virtualization technology resulted in huge cost-saving, it has not brought the cost to the extent that every
+- Though the virtualization technology resulted in huge cost-saving, it has not brought down the cost to the extent that every
   engineer can be provided with 10~15 VMs
 - Developers would need to test their feature in different OS
-- QA team may have test the product on multiple OS 
-- In production environment, different software component like Web/App Servers, DB Servers, would require separate OS that runs in a separate VM/Physical Machine
+- QA team may have to test the product on multiple OS 
+- In production environments, different software component like Web/App Servers, DB Servers, would require separate OS that 
+  runs in a separate VM/Physical Machine
 - This type of Virtualization is called Heavy weight Virtualization
   - each VM must be allocated with dedicated Hardware resources
     - CPU cores
@@ -54,7 +55,7 @@
 ## Info - Containerization
 <pre>
 - it is an application virtualization technology
-- this is light-weigth virtualization, as container does't required dedicated hardware resources
+- this is a light-weight virtualization technology, as container does't require dedicated hardware resources
 - in other words, all containers that runs in the same machine/os shares the hardware resources on the underlying Host/Guest OS
 - each container represents one application process not an Operating System
 - technically, comparing a container with Virtual Machine, Guest OS or Host OS is ideally wrong
