@@ -536,4 +536,6 @@ oc get svc
 
 oc describe svc/nginx
 ```
+<img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/b8938c80-8597-4560-b7c2-c3aa3f67d13b" />
+
 
