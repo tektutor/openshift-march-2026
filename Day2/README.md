@@ -446,6 +446,12 @@ oc create deployment nginx --image=image-registry.openshift-image-registry.svc:5
 oc get deploy,rs,po
 ```
 
+Troubleshooting ImagePullBack error
+```
+# You need to edit the image to image-registry.openshift-image-registry.svc:5000/openshift/nginx:1.27 and save & quit
+oc edit deploy/nginx
+```
+
 Now you can 
 ```
 oc project jegan
