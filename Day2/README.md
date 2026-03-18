@@ -571,7 +571,8 @@ Note
 
 Let's delete the ClusterIP Internal Service we created for nginx deployment
 ```
-oc delte svc/nginx
+oc get svc
+oc delete svc/nginx
 ```
 
 We can create the NodePort external service for nginx deployment
