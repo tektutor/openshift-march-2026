@@ -558,3 +558,38 @@ oc exec -it hello-9bc9955dc-ljvwr -- sh
 ```
 <img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/ac91e902-dd81-4e55-8d6d-78658ef388b9" />
 
+
+## Lab - Creating a NodePort external service for nginx deployment
+
+Note
+<pre>
+- Kubernetes/Openshift reserve ports in the range 30000-32767 for NodePort services
+- Openshift will automatically assign any one of the available port in the above range
+- the NodePort chosen will be opened on all the nodes in your Openshift cluster
+- Hence, you can access the NodePort service using any openshift node ip/hostname
+</pre>
+
+Let's delete the ClusterIP Internal Service we created for nginx deployment
+```
+oc delte svc/nginx
+```
+
+We can create the NodePort external service for nginx deployment
+```
+oc expose deploy/nginx --type=NodePort --port=8080
+oc get services
+oc get service
+oc get svc
+oc describe svc/nginx
+```
+
+Testing the NodePort service
+```
+curl http://master01.ocp4.palmeto.org:32452
+curl http://master02.ocp4.palmeto.org:32452
+curl http://master03.ocp4.palmeto.org:32452
+curl http://worker01.ocp4.palmeto.org:32452
+curl http://worker02.ocp4.palmeto.org:32452
+curl http://worker03.ocp4.palmeto.org:32452
+```
+<img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/5ede9997-2591-49a9-b1c8-588c5d48976a" />
