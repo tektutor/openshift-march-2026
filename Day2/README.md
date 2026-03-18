@@ -539,3 +539,14 @@ oc describe svc/nginx
 <img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/b8938c80-8597-4560-b7c2-c3aa3f67d13b" />
 
 
+Testing the nginx internal service
+```
+oc rsh deploy/hello
+
+curl http://nginx:8080
+curl http://172.30.78.253:8080
+
+exit
+```
+<img width="1906" height="1120" alt="image" src="https://github.com/user-attachments/assets/463b40fb-fb64-4d70-a8a8-e18aa23ef549" />
+
