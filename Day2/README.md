@@ -11,7 +11,7 @@ image-registry.openshift-image-registry.svc:5000/openshift/mariadb:12.0.2
 
 ## Info - You may find this useful
 <pre>
-https://medium.com/tektutor/openshift-ci-cd-with-tekton-faa88ba45656
+https://www.tektutor.org/openshift-ci-cd-with-tekton/
 </pre>  
 
 ## Info - Container Orchestration Platform Overview
