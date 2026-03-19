@@ -78,8 +78,8 @@ oc get svc
 
 Let's create the nodeport external service for nginx deployment
 ```
-oc expose deploy/nginx --type=NodePort --port=8080 -o yaml dry-run=client
-oc expose deploy/nginx --type=NodePort --port=8080 -o yaml dry-run=client > nginx-nodeport-svc.yml
+oc expose deploy/nginx --type=NodePort --port=8080 -o yaml --dry-run=client
+oc expose deploy/nginx --type=NodePort --port=8080 -o yaml --dry-run=client > nginx-nodeport-svc.yml
 
 oc apply -f nginx-nodeport-svc.yml
 oc get svc
