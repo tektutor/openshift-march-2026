@@ -58,7 +58,7 @@ oc describe svc/nginx
 oc create deploy hello --image=image-registry.openshift-image-registry.svc:5000/openshift/hello:1.0 -o yaml --dry-run=client
 oc create deploy hello --image=image-registry.openshift-image-registry.svc:5000/openshift/hello:1.0 -o yaml --dry-run=client > hello-deployment.yml
 
-oc create -f hello-deployment --save-config
+oc create -f hello-deployment.yml --save-config
 oc get pods
 oc get svc
 oc rsh deploy/hello
