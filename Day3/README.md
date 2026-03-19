@@ -174,4 +174,18 @@ ls -l
 
 <img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/37a1a6e1-3309-4c44-860f-6d55a16b44f6" />
 
+To update 'jegan' with your name
+```
+cd ~/openshift-march-2026
+git pull
+cd Day3/wordpress-with-configmaps-and-secrets
+sed -i 's/jegan/nitesh/g' *.yml
+```
 
+Deploying wordpress and mariadb
+```
+cd ~/openshift-march-2026
+cd Day3/wordpress-with-configmaps-and-secrets
+oc project jegan
+./deploy.sh
+```
