@@ -65,3 +65,4 @@ oc rsh deploy/hello
 curl http://nginx:8080
 exit
 ```
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/d86cb2df-3bb5-4dc0-bbb6-abc2ecdb7b5d" />
