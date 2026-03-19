@@ -195,3 +195,59 @@ oc project jegan
 <img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/241ac314-6a0e-4670-8027-6f1bcbc0be99" />
 <img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/87e97bda-3f5c-4cb3-8140-62c61fb60b02" />
 <img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/74f95a91-28eb-49f0-b2e3-5c936f7d7003" />
+
+
+## Lab - Creating a Helm chart for our wordpress, mariadb multi-pod application
+```
+cd ~/openshift-march-2026
+git pull
+cd Day3
+mkdir -p helm/manifest-scripts
+cp wordpress-with-configmaps-and-secrets/*.yml helm/manifest-scripts
+cd helm
+
+helm create wordpress
+tree wordpress
+
+cd wordpress/templates
+rm -rf *
+cd ../..
+
+cp manifest-scripts/* wordpress/templates
+cd wordpress
+echo "" > values.yaml
+cd ..
+tree wordpress
+```
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/aeccbdf6-3561-4376-bc33-965efc96cc4a" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/a6d5bef8-19f1-4131-aa09-9d225e1432de" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/9867b3ea-1349-4ebd-887b-808d329b7325" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/1ecfae91-0401-48bb-84bf-9550601b89ac" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/23ca87fe-b78b-4dd9-b06d-50828c662732" />
+
+
+Let's clean up the folders and files created by our previous wordpress deployment
+```
+showmount -e | grep jegan
+cd /var/nfs/jegan/mysql
+rm -rf *
+cd ../wordpress
+rm -rf *
+```
+
+Let's create Helm chart(installer package) for wordpress & mariadb multi-pod application
+```
+cd ~/openshift-march-2026/Day3/helm
+helm package wordpress
+ls -l
+helm list
+
+oc get all
+
+helm install wp-jegan wordpress-0.1.0.tgz
+
+oc get pods
+```
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/c44dd582-0c8c-4c9e-8103-c49f0b663398" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/b6a35c73-7881-4f89-8bda-a1066b4037bb" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/aefb0997-035b-42e9-9d53-21561a9e67ad" />
