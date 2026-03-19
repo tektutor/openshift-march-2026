@@ -108,9 +108,52 @@ chmod 700 get_helm.sh
 ./get_helm.sh
 ```
 
-## Info - Persistent Volume
 
-## Info - Persistent Volume Claim
+
+## Info - Persistent Volume (PV)
+<pre>
+- Persistent Volume is an external disk or shared path
+- Persistent Volume can be provisioned by Openshift Administrators either manually(static) or dynamically using storageclass
+- PV are created on the cluster scope, which means any application running within Openshift from any project namespace can bind and use it
+- Persistent Volume will usually capture the below attributes
+  - disk size in MiB/GiB
+  - access 
+    - ReadWriteOnce ( This means all Pods from a single Openshift node can read and write to the external disk )
+    - ReadWriteMany ( This means, all Pods from any node in Openshift can read and write to the external disk )
+- this external disk i.e Persistent Volume could be coming from
+  - NFS Server
+  - AWS S3 bucket
+  - AWS EBS - Elastic Block Storage or similar Storage Clusters
+  - Longhorn, etc.,
+</pre>
+
+## Info - StorageClasss
+<pre>
+- StorageClass is a way automatically Persistent Volume(PV) can be provisioned in NFS, AWS S3, etc
+- For instance, your organization is interested in provisioning Persistent Volumes from AWS S3 buckets, then
+  we need to create StorageClass ( via YAML ) in Openshift, providing the AWS Login credentials, any configuration required
+- anytime some application in Openshift requests for external storage via Persistent Volume Claim(PVC), then the AWS Storage Class you created
+  will automatically provision the request disk with the appropriate disk access and let your application use that storage
+</pre>
+
+## Info - Persistent Volume Claim (PVC)
+<pre>
+- Persistent Volume Claims are crated as part of your application i.e non-admins can create this
+- it will be always created under some project namespace
+- this is the way your application can request for external storage with specific permission with specific etc.,
+</pre>
+
+## Info - ConfigMap
+<pre>
+
+</pre>
+
+
+## Info - Secrets
+<pre>
+  
+</pre>
+
 
 
 
@@ -129,3 +172,5 @@ ls -l
 ```
 
 <img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/37a1a6e1-3309-4c44-860f-6d55a16b44f6" />
+
+
