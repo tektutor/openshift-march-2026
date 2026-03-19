@@ -198,6 +198,12 @@ oc project jegan
 
 
 ## Lab - Creating a Helm chart for our wordpress, mariadb multi-pod application
+Make sure you delete your existing openshift project
+```
+oc delete project jegan
+oc new-project jegan
+```
+
 ```
 cd ~/openshift-march-2026
 git pull
