@@ -50,3 +50,5 @@ oc create -f nginx-clusterip-svc.yml
 oc get svc
 oc describe svc/nginx
 ```
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/29b6f25e-e9d2-43c3-b7f7-3b388a016361" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/32d2acfc-fbe1-49f1-afe9-92c3a57fe7af" />
