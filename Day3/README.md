@@ -39,3 +39,14 @@ oc get deploy,rs,po
 <img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/4f028306-30b4-4b6d-b09b-1ca0a8676f5e" />
 <img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/a6e6ce18-fc8d-4fb4-8762-85fdc921e974" />
 
+## Lab - Creating a ClusterIP Internal Service for nginx deployment in declarative style
+```
+oc project jegan
+oc expose deploy/nginx --type=ClusterIP --port=8080 -o yaml --dry-run=client
+oc expose deploy/nginx --type=ClusterIP --port=8080 -o yaml --dry-run=client > nginx-clusterip-svc.yml
+
+oc create -f nginx-clusterip-svc.yml
+
+oc get svc
+oc desecribe svc/nginx
+```
