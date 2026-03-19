@@ -86,3 +86,5 @@ oc get svc
 
 curl http://master01.ocp4.palmeto.org:32365
 ```
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/c5c5a428-e787-46a3-bde6-9b9556b040fe" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/d0048801-e559-489a-ac67-cffd1b2f827b" />
