@@ -252,3 +252,27 @@ oc get pods
 <img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/b6a35c73-7881-4f89-8bda-a1066b4037bb" />
 <img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/aefb0997-035b-42e9-9d53-21561a9e67ad" />
 <img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/8541eb2a-9208-4a7d-8672-b6b82b1799bf" />
+
+## Lab - Deploying application into Openshift using S2I Docker Strategy
+
+Note
+<pre>
+- When we the S2I(Source to Image), we can just provide application source code along with Dockerfile
+- Openshift will clone the GitHub repo
+- It will look for Dockerfile, it generates BuildConfig 
+- It will create an instance of Build(this will create pod to perform Build) using BuidlConfig
+  and its follows the instructions present in the Dockerfile to build your
+  application into application executable, then it builds custom image
+- the newly build custom image will then get pushed into Openshift Internal Image Registry
+- it then deploys your application from the Openshift Internal Image Registry
+</pre>
+
+```
+oc delete project jegan
+oc new-project jegan
+
+oc new-app --name hello-micorservice https://github.com/tektutor/spring-ms.git --strategy=docker
+
+oc logs -f bc/hello-microservice
+```
+
