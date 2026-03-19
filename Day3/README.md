@@ -289,3 +289,14 @@ oc logs -f bc/hello-microservice
 <img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/722e9e2d-0b37-40b7-8c25-38d382523674" />
 <img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/ed3fd97e-f005-472f-87e2-0f841b59344b" />
 <img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/94b085ce-5564-498c-aa28-00c4c63ba19f" />
+
+## Lab - Deploying application into Openshift using S2I Source Strategy
+```
+oc delete project jegan
+oc new-project jegan
+
+oc new-app --name hello-micorservice https://github.com/tektutor/spring-ms.git --strategy=source
+oc expose svc/hello-microservice
+
+oc logs -f bc/hello-microservice
+```
