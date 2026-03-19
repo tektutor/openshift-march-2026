@@ -88,3 +88,44 @@ curl http://master01.ocp4.palmeto.org:32365
 ```
 <img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/c5c5a428-e787-46a3-bde6-9b9556b040fe" />
 <img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/d0048801-e559-489a-ac67-cffd1b2f827b" />
+
+
+## Info - Helm
+<pre>
+- Package Manager for Kubernetes and Openshift
+- Using Helm
+  - we can install/upgrade/uninstall software into Kubernetes, Rancher and Openshift
+- In case the application you are trying to deploy requires multiple Openshift manifest scripts(i.e yaml) files, we
+  need to ensure they are applied following a proper sequence, in case we use Helm to package those scripts, Helm is
+  Kubernetes/Rancher/Openshift aware tool, hence it will figure out the order in which Openshift resources must created
+- The application packaged by Helm is called Helm Chart
+</pre>
+
+## Demo - Installing Helm in Linux
+```
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-4
+chmod 700 get_helm.sh
+./get_helm.sh
+```
+
+## Info - Persistent Volume
+
+## Info - Persistent Volume Claim
+
+
+
+## Lab - Deploying multipod Wordpress and Mariadb in declarative style
+
+In case you haven't clone this repository already, you may do now
+```
+cd ~
+git clone https://github.com/tektutor/openshift-march-2026.git
+```
+
+Let's deploy the wordpress and mariadb multi-pod application declaratively using manifest(yaml) files
+```
+cd Day3/wordpress-with-configmaps-and-secrets
+ls -l
+```
+
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/37a1a6e1-3309-4c44-860f-6d55a16b44f6" />
