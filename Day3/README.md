@@ -52,3 +52,16 @@ oc describe svc/nginx
 ```
 <img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/29b6f25e-e9d2-43c3-b7f7-3b388a016361" />
 <img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/32d2acfc-fbe1-49f1-afe9-92c3a57fe7af" />
+
+## Lab - Testing the ClusterIP Service using curl on the Hello Pod
+```
+oc create deploy hello --image=image-registry.openshift-image-registry.svc:5000/openshift/hello:1.0 -o yaml --dry-run=client
+oc create deploy hello --image=image-registry.openshift-image-registry.svc:5000/openshift/hello:1.0 -o yaml --dry-run=client > hello-deployment.yml
+
+oc create -f hello-deployment --save-config
+oc get pods
+oc get svc
+oc rsh deploy/hello
+curl http://nginx:8080
+exit
+```
