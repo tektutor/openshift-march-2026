@@ -48,5 +48,5 @@ oc expose deploy/nginx --type=ClusterIP --port=8080 -o yaml --dry-run=client > n
 oc create -f nginx-clusterip-svc.yml
 
 oc get svc
-oc desecribe svc/nginx
+oc describe svc/nginx
 ```
