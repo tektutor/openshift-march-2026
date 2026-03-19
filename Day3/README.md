@@ -22,7 +22,7 @@ curl http://nginx-jegan.apps.ocp4.palmeto.org
 ```
 
 ## Info - Recommended Application source directory Structure
-<img width="480" height="300" alt="image" src="https://github.com/user-attachments/assets/ca4fe105-d09b-4974-b9b2-3406bdb656bb" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/ceafe5b6-0a88-42ea-ac45-a265f37050aa" />
 
 ## Lab - Deploying nginx in declarative style
 ```
