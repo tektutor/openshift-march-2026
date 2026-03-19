@@ -66,3 +66,23 @@ curl http://nginx:8080
 exit
 ```
 <img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/d86cb2df-3bb5-4dc0-bbb6-abc2ecdb7b5d" />
+
+## Lab - Creating a NodePort external service in declarative style
+
+First let's delete the existing nginx service
+```
+oc get svc
+oc delete -f nginx-clusterip-svc.yml
+oc get svc
+```
+
+Let's create the nodeport external service for nginx deployment
+```
+oc expose deploy/nginx --type=NodePort --port=8080 -o yaml dry-run=client
+oc expose deploy/nginx --type=NodePort --port=8080 -o yaml dry-run=client > nginx-nodeport-svc.yml
+
+oc apply -f nginx-nodeport-svc.yml
+oc get svc
+
+curl http://master01.ocp4.palmeto.org:32365
+```
