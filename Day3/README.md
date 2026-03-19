@@ -34,3 +34,7 @@ oc create deployment nginx --image=image-registry.openshift-image-registry.svc:5
 oc create -f nginx-deployment.yml --save-config
 oc get deploy,rs,po
 ```
+
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/9e0c5982-704a-4551-9d15-1087d8a70b69" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/4f028306-30b4-4b6d-b09b-1ca0a8676f5e" />
+
