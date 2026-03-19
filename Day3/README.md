@@ -189,3 +189,9 @@ cd Day3/wordpress-with-configmaps-and-secrets
 oc project jegan
 ./deploy.sh
 ```
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/df7161ae-42f1-458c-a85a-2f431ec4badf" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/c74da9a7-98ff-4ee8-86f1-7ea90ebb06f8" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/9e2e7b88-9f14-44a0-8f2c-bdadf4e786a5" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/241ac314-6a0e-4670-8027-6f1bcbc0be99" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/87e97bda-3f5c-4cb3-8140-62c61fb60b02" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/74f95a91-28eb-49f0-b2e3-5c936f7d7003" />
