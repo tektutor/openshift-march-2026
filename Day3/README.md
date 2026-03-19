@@ -272,7 +272,14 @@ oc delete project jegan
 oc new-project jegan
 
 oc new-app --name hello-micorservice https://github.com/tektutor/spring-ms.git --strategy=docker
+oc expose svc/hello-microservice
 
 oc logs -f bc/hello-microservice
 ```
 
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/d3f28137-0a5c-485a-8f48-83396f840be3" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/ec4418b5-dad6-4aeb-98f7-76fe49636a60" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/4d9fc777-50ae-47e0-98af-5abde01301e8" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/722e9e2d-0b37-40b7-8c25-38d382523674" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/ed3fd97e-f005-472f-87e2-0f841b59344b" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/94b085ce-5564-498c-aa28-00c4c63ba19f" />
