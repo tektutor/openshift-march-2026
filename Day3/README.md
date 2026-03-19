@@ -145,17 +145,18 @@ chmod 700 get_helm.sh
 
 ## Info - ConfigMap
 <pre>
-
+- is a Map that stores data in the form key/value
+- any non-sensitive data your application depends on can be stored in ConfigMap avoid hard-coding
 </pre>
-
 
 ## Info - Secrets
 <pre>
-  
+- is a Map that stores data in the form of key/value
+- all the values stored inside Secrets are just base64 encoded strings, hence if you are using Secrets for security, this is the not right choice
+- any sensitive data like login credentials, private/public key, any certs, etc. you may store in Secrets
+- only administrators will be able to view the data stored in Secrets, for others they can't see the data/values stored against a key
+- Openshift application can securely retrieve data stored from secrets and use them without revealing the values
 </pre>
-
-
-
 
 ## Lab - Deploying multipod Wordpress and Mariadb in declarative style
 
