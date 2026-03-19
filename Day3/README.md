@@ -251,3 +251,4 @@ oc get pods
 <img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/c44dd582-0c8c-4c9e-8103-c49f0b663398" />
 <img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/b6a35c73-7881-4f89-8bda-a1066b4037bb" />
 <img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/aefb0997-035b-42e9-9d53-21561a9e67ad" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/8541eb2a-9208-4a7d-8672-b6b82b1799bf" />
