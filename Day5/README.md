@@ -1,4 +1,4 @@
-<img width="1913" height="1116" alt="image" src="https://github.com/user-attachments/assets/6296770b-023f-4004-88ab-8c9a8e728f1c" /># Day 5
+# Day 5
 
 ## Info - Openshift Images
 <pre>
@@ -34,3 +34,4 @@ oc get pods
 <img width="1913" height="1116" alt="image" src="https://github.com/user-attachments/assets/b2632f27-870c-40ac-b2ed-c7ed46b0da9c" />
 <img width="1913" height="1116" alt="image" src="https://github.com/user-attachments/assets/82abb3b9-59c2-4a88-86a8-ec30896c776b" />
 <img width="1913" height="1116" alt="image" src="https://github.com/user-attachments/assets/9b07e2a1-aa4a-495d-8cdd-68913c31b901" />
+<img width="1913" height="1116" alt="image" src="https://github.com/user-attachments/assets/6296770b-023f-4004-88ab-8c9a8e728f1c" />
