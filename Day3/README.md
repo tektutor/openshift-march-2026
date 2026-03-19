@@ -20,3 +20,17 @@ oc expose svc/nginx
 oc get route
 curl http://nginx-jegan.apps.ocp4.palmeto.org
 ```
+
+## Info - Recommended Application source directory Structure
+<img width="480" height="300" alt="image" src="https://github.com/user-attachments/assets/ca4fe105-d09b-4974-b9b2-3406bdb656bb" />
+
+## Lab - Deploying nginx in declarative style
+```
+oc project jegan
+
+oc create deployment nginx --image=image-registry.openshift-image-registry.svc:5000/openshift/nginx:1.27 --replicas=3 -o yaml --dry-run=client
+oc create deployment nginx --image=image-registry.openshift-image-registry.svc:5000/openshift/nginx:1.27 --replicas=3 -o yaml --dry-run=client > nginx-deployment.yml
+
+oc create -f nginx-deployment.yml --save-config
+oc get deploy,rs,po
+```
