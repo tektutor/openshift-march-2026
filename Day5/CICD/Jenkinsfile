@@ -26,7 +26,8 @@ spec:
 
     environment {
         APP_NAME = "hello-microservice"
-        // Force the absolute path to the project folder
+        // This must match the 'metadata.name' in your hello-deploy.yml
+        DEPLOYMENT_NAME = "hello-springboot-microservice"
         PROJECT_DIR = "Day5/CICD/hello-springboot-microservice"
     }
 
@@ -36,7 +37,6 @@ spec:
                 container('java-agent') {
                     dir("${env.PROJECT_DIR}") {
                         sh "mvn clean package -DskipTests"
-                        // DEBUG: Verify the file is actually there
                         sh "ls -ld target" 
                     } 
                 }
@@ -47,17 +47,15 @@ spec:
             steps {
                 container('oc-client') {
                     script {
-                        // Use the EXACT same variable to enter the folder
                         dir("${env.PROJECT_DIR}") {
                             openshift.withCluster() {
                                 openshift.withProject() {
                                     if (!openshift.selector("bc", "${APP_NAME}-binary").exists()) {
+                                        echo "Creating Binary BuildConfig..."
                                         openshift.newBuild("--name=${APP_NAME}-binary", "--strategy=source", "--binary=true", "--image=registry.access.redhat.com/ubi8/openjdk-17:latest")
                                     }
 
-                                    echo "Uploading target folder to OpenShift from: ${env.WORKSPACE}/${env.PROJECT_DIR}/target"
-                                    
-                                    // Trigger build - 'target/' is now relative to the PROJECT_DIR
+                                    echo "Uploading target folder to OpenShift..."
                                     openshift.selector("bc", "${APP_NAME}-binary").startBuild("--from-dir=target/", "--wait")
                             
                                     def tag = "build-${env.BUILD_NUMBER}"
@@ -70,13 +68,13 @@ spec:
             }
         }
 
-	stage('Deploy to OpenShift') {
+        stage('Deploy to OpenShift') {
             steps {
                 container('oc-client') {
                     script {
                         openshift.withCluster() {
                             openshift.withProject() {
-                                // Get the current namespace explicitly
+                                // Resolves the 'error: no project has been set' issue
                                 def namespace = openshift.project() 
                                 
                                 dir("Day5/CICD/openshift") {
@@ -86,17 +84,18 @@ spec:
                                 }
 
                                 def tag = "build-${env.BUILD_NUMBER}"
+                                def registry = "image-registry.openshift-image-registry.svc:5000"
                                 
-                                // FIX 1: Updated deployment name to match your 'oc apply' output
-                                // FIX 2: Used the 'namespace' variable instead of 'oc project -q'
-                                sh "oc set image deployment/hello-springboot-microservice hello-springboot-microservice=image-registry.openshift-image-registry.svc:5000/${namespace}/${APP_NAME}:${tag}"
+                                // Explicitly update the deployment with the new image
+                                sh "oc set image deployment/${env.DEPLOYMENT_NAME} ${env.DEPLOYMENT_NAME}=${registry}/${namespace}/${APP_NAME}:${tag}"
                                 
-                                // Monitor the rollout
-                                openshift.selector("deployment", "hello-springboot-microservice").rollout().status()
+                                // Wait for rollout to finish
+                                openshift.selector("deployment", "${env.DEPLOYMENT_NAME}").rollout().status()
                             }
                         }
                     }
                 }
             }
         }
+    }
 }
