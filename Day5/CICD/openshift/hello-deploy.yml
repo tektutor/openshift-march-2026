@@ -2,19 +2,19 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: hello-springboot-microservice
-  name: hello-springboot-microservice
+    app: hello-microservice
+  name: hello-microservice
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: hello-springboot-microservice
+      app: hello-microservice
   template:
     metadata:
       labels:
-        app: hello-springboot-microservice
+        app: hello-microservice
     spec:
       containers:
-      - name: hello-springboot-microservice
-        image: image-registry.openshift-image-registry.svc:5000/openshift/hello-springboot-microservice:latest
+      - name: hello-microservice
+        image: image-registry.openshift-image-registry.svc:5000/openshift/hello-microservice:latest
         imagePullPolicy: IfNotPresent

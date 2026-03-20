@@ -27,7 +27,7 @@ spec:
     environment {
         APP_NAME = "hello-microservice"
         // This must match the 'metadata.name' in your hello-deploy.yml
-        DEPLOYMENT_NAME = "hello-springboot-microservice"
+        DEPLOYMENT_NAME = "hello-microservice"
         PROJECT_DIR = "Day5/CICD/hello-springboot-microservice"
     }
 
