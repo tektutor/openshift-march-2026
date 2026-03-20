@@ -8,15 +8,17 @@ spec:
   containers:
   - name: java-agent
     image: registry.access.redhat.com/ubi8/openjdk-17:latest
+    workingDir: /home/jenkins/agent
     command: ['cat']
     tty: true
+    volumeMounts:
+    - name: m2-cache
+      mountPath: /home/jenkins/.m2
   - name: oc-client
     image: quay.io/openshift/origin-cli:latest
+    workingDir: /home/jenkins/agent
     command: ['cat']
     tty: true
-  volumeMounts:
-  - name: m2-cache
-    mountPath: /home/jenkins/.m2
   volumes:
   - name: m2-cache
     emptyDir: {}
@@ -32,7 +34,7 @@ spec:
         stage('Compile & Package') {
             steps {
                 container('java-agent') {
-                    // Path is relative to contextDir (Day5/CICD)
+                    // This matches the folder in your tree output
                     dir('Day5/CICD/hello-springboot-microservice') {
                         sh "mvn clean package -DskipTests"
                     } 
@@ -44,25 +46,32 @@ spec:
             steps {
                 container('oc-client') {
                     script {
-                        openshift.withCluster() {
-                            openshift.withProject() {
-                                if (!openshift.selector("bc", "hello-microservice-binary").exists()) {
-                                    echo "Binary BuildConfig not found. Creating it now..."
-                                    openshift.newBuild("--name=hello-microservice-binary", 
-                                                       "--strategy=source", 
-                                                       "--binary=true", 
-                                                       "--image=registry.access.redhat.com/ubi8/openjdk-17:latest")
-                                }
+                        // We enter the folder where the 'target' directory was just created
+                        dir('hello-springboot-microservice') {
+                            openshift.withCluster() {
+                                openshift.withProject() {
+                                    
+                                    // 1. Self-Healing: Create the binary BC if missing
+                                    if (!openshift.selector("bc", "${APP_NAME}-binary").exists()) {
+                                        echo "Binary BuildConfig not found. Creating it now..."
+                                        openshift.newBuild("--name=${APP_NAME}-binary", 
+                                                           "--strategy=source", 
+                                                           "--binary=true", 
+                                                           "--image=registry.access.redhat.com/ubi8/openjdk-17:latest")
+                                    }
 
-                                openshift.selector("bc", "hello-microservice-binary").startBuild(
-                                    "--from-dir=hello-springboot-microservice/target/", 
-                                    "--wait"
-                                )
-                        
-                                def tag = "build-${env.BUILD_NUMBER}"
-                                openshift.tag("hello-microservice-binary:latest", "hello-microservice:${tag}")
-                                // FIXED: Added missing quote and parenthesis
-                                echo "Image successfully tagged as hello-microservice:${tag}"
+                                    // 2. Trigger the build using the local 'target' folder
+                                    echo "Starting OpenShift binary build from target directory..."
+                                    openshift.selector("bc", "${APP_NAME}-binary").startBuild(
+                                        "--from-dir=target/", 
+                                        "--wait"
+                                    )
+                            
+                                    // 3. Tag the image for the deployment stage
+                                    def tag = "build-${env.BUILD_NUMBER}"
+                                    openshift.tag("${APP_NAME}-binary:latest", "${APP_NAME}:${tag}")
+                                    echo "Image successfully tagged as ${APP_NAME}:${tag}"
+                                }
                             }
                         }
                     }
@@ -76,7 +85,7 @@ spec:
                     script {
                         openshift.withCluster() {
                             openshift.withProject() {
-                                // Path is relative to contextDir (Day5/CICD)
+                                // Apply the YAML manifests from the 'openshift' subdirectory
                                 dir('openshift') {
                                     sh "oc apply -f hello-deploy.yml"
                                     sh "oc apply -f hello-service.yml"
@@ -84,8 +93,11 @@ spec:
                                 }
 
                                 def tag = "build-${env.BUILD_NUMBER}"
+                                
+                                // Update the deployment to use the specific build tag
                                 sh "oc set image deployment/${APP_NAME} ${APP_NAME}=image-registry.openshift-image-registry.svc:5000/\$(oc project -q)/${APP_NAME}:${tag}"
                                 
+                                // Monitor the rollout
                                 openshift.selector("deployment", APP_NAME).rollout().status()
                             }
                         }
