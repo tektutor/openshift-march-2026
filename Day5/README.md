@@ -53,8 +53,8 @@ oc start-build java-app-pipeline --follow
 <img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/3678d4c7-dba9-42b4-97ed-b46737c21af4" />
 <img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/8a0fa0bd-78e0-488b-aca5-363a328e484c" />
 <img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/22f192fc-786e-4007-83dd-5c6deca9f0a4" />
-
-<img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/c4865b82-7981-43bb-b806-73c3275101d5" />
-<img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/25eb333a-b131-4b5d-94d5-dfee3d95526b" />
-<img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/55809d9a-1833-47bf-ad70-96e8c9c491e7" />
-<img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/08eab2ba-b4ca-465d-9efc-16db422882a5" />
+<img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/2a07b221-42d7-4973-a8a8-d046d3b56a68" />
+<img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/b40bc751-0884-4434-8094-288a59fcd079" />
+<img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/30e36489-889c-41e0-abc4-e6b1805bd276" />
+<img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/fa6f0be6-741b-485a-8a18-79b6f719acb7" />
+<img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/80052043-63fd-45d1-945a-e0e2cdf385fe" />
