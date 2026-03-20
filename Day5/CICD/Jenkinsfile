@@ -12,6 +12,8 @@ spec:
     command: ['cat']
     tty: true
     volumeMounts:
+    - name: shared-workspace
+      mountPath: /home/jenkins/agent
     - name: m2-cache
       mountPath: /home/jenkins/.m2
   - name: oc-client
@@ -19,7 +21,12 @@ spec:
     workingDir: /home/jenkins/agent
     command: ['cat']
     tty: true
+    volumeMounts:
+    - name: shared-workspace
+      mountPath: /home/jenkins/agent
   volumes:
+  - name: shared-workspace
+    emptyDir: {}
   - name: m2-cache
     emptyDir: {}
 """
@@ -42,35 +49,23 @@ spec:
             }
         }
 
-        stage('Build Custom Image') {
+	stage('Build Custom Image') {
             steps {
                 container('oc-client') {
                     script {
-                        // We enter the folder where the 'target' directory was just created
+                        // Enter the SAME folder on the shared volume
                         dir('hello-springboot-microservice') {
                             openshift.withCluster() {
                                 openshift.withProject() {
-                                    
-                                    // 1. Self-Healing: Create the binary BC if missing
                                     if (!openshift.selector("bc", "${APP_NAME}-binary").exists()) {
-                                        echo "Binary BuildConfig not found. Creating it now..."
-                                        openshift.newBuild("--name=${APP_NAME}-binary", 
-                                                           "--strategy=source", 
-                                                           "--binary=true", 
-                                                           "--image=registry.access.redhat.com/ubi8/openjdk-17:latest")
+                                        openshift.newBuild("--name=${APP_NAME}-binary", "--strategy=source", "--binary=true", "--image=registry.access.redhat.com/ubi8/openjdk-17:latest")
                                     }
 
-                                    // 2. Trigger the build using the local 'target' folder
-                                    echo "Starting OpenShift binary build from target directory..."
-                                    openshift.selector("bc", "${APP_NAME}-binary").startBuild(
-                                        "--from-dir=target/", 
-                                        "--wait"
-                                    )
+                                    echo "Uploading target folder to OpenShift..."
+                                    openshift.selector("bc", "${APP_NAME}-binary").startBuild("--from-dir=target/", "--wait")
                             
-                                    // 3. Tag the image for the deployment stage
                                     def tag = "build-${env.BUILD_NUMBER}"
                                     openshift.tag("${APP_NAME}-binary:latest", "${APP_NAME}:${tag}")
-                                    echo "Image successfully tagged as ${APP_NAME}:${tag}"
                                 }
                             }
                         }
