@@ -10,9 +10,13 @@ spec:
     image: registry.access.redhat.com/ubi8/openjdk-17:latest
     command: ['cat']
     tty: true
-    volumeMounts:
-    - name: m2-cache
-      mountPath: /home/jenkins/.m2
+  - name: oc-client
+    image: quay.io/openshift/origin-cli:latest
+    command: ['cat']
+    tty: true
+  volumeMounts:
+  - name: m2-cache
+    mountPath: /home/jenkins/.m2
   volumes:
   - name: m2-cache
     emptyDir: {}
