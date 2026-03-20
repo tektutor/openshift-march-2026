@@ -152,17 +152,18 @@ oc describe ingress/tektutor
 curl http://tektutor.apps.ocp4.palmeto.org/nginx
 curl http://tektutor.apps.ocp4.palmeto.org/hello
 ```
+<img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/875136be-48b5-431d-a89f-a29b27614d38" />
+<img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/53328603-2318-4834-9ba9-8a9eee39374e" />
+<img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/566c6516-7859-47af-a5cc-39d1b0932a2b" />
+<img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/0bd37fad-27a0-4461-89c1-3be795712c6b" />
+<img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/2254b62b-f676-447f-9046-b5c774e1bc4f" />
+
 
 ## Lab - Creating an edge route( https ) to secure your application running in Red Hat Openshift
 ```
 oc delete project jegan
 oc new-project jegan
-# Server 1
 oc create deploy nginx --image=image-registry.openshift-image-registry.svc:5000/openshift/nginx:1.29 --replicas=3
-
-# Server 2
-oc create deploy nginx --image=image-registry.openshift-image-registry.svc:5000/openshift/nginx:1.30 --replicas=3
-
 openssl version
 oc get pods
 ```
