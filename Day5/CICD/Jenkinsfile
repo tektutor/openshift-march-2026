@@ -33,7 +33,7 @@ spec:
             steps {
                 container('java-agent') {
                     // Path is relative to contextDir (Day5/CICD)
-                    dir('hello-springboot-microservice') {
+                    dir('Day5/CICD/hello-springboot-microservice') {
                         sh "mvn clean package -DskipTests"
                     } 
                 }
