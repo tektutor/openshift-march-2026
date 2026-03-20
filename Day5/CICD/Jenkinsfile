@@ -43,6 +43,7 @@ spec:
 
         stage('Build Custom Image') {
             steps {
+                container('oc-client') {
                 script {
                     openshift.withCluster() {
                         openshift.withProject() {
@@ -60,6 +61,7 @@ spec:
                         }
                     }
                 }
+              }
             }
         }
 
