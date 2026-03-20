@@ -163,12 +163,7 @@ curl http://tektutor.apps.ocp4.palmeto.org/hello
 ```
 oc delete project jegan
 oc new-project jegan
-# Server 1
 oc create deploy nginx --image=image-registry.openshift-image-registry.svc:5000/openshift/nginx:1.29 --replicas=3
-
-# Server 2
-oc create deploy nginx --image=image-registry.openshift-image-registry.svc:5000/openshift/nginx:1.30 --replicas=3
-
 openssl version
 oc get pods
 ```
