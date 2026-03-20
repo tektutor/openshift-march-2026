@@ -885,6 +885,14 @@ oc start-build java-app-pipeline --follow
 <img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/fa6f0be6-741b-485a-8a18-79b6f719acb7" />
 <img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/80052043-63fd-45d1-945a-e0e2cdf385fe" />
 
+## Additional Lab - Do you want to see how etcd organizes data internally
+```
+oc exec -it etcd-master01.ocp4.palmeto.rog -c etcdctl -n openshift-etcd sh
+etcdctl get "/kubernetes.io/pods/jegan" --prefix=true
+etcdctl get "/kubernetes.io/deployments/jegan/nginx" --prefix=true
+exit
+```
+
 ## Certifications Recommended
 
 #### Recommended for Developers
@@ -923,3 +931,4 @@ oc start-build java-app-pipeline --follow
 - OpenShift Virtualization (EX316) - Running VMs alongside containers
 - OpenShift Data Foundation (EX370) - Managing cluster storage/ODF
 </pre>
+
