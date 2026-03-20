@@ -30,7 +30,7 @@ spec:
             steps {
                 container('java-agent') {
                     // Corrected closing brace alignment
-                    dir('hello-springboot-microservice') {
+                    dir('Day5/CICD/hello-springboot-microservice') {
                         sh "mvn clean package -DskipTests"
                     } 
                 }
@@ -42,8 +42,6 @@ spec:
                 script {
                     openshift.withCluster() {
                         openshift.withProject() {
-                            // FIXED: 'startBuild' (removed the 'i')
-                            // FIXED: 'hello-springboot-microservice' (added the missing 'g')
                             def build = openshift.selector("bc", "hello-microservice-binary").startBuild(
                                 "--from-dir=hello-springboot-microservice/target/", 
                                 "--wait"
