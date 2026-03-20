@@ -140,6 +140,7 @@ oc get pods
 oc logs -f your-jms-producer-pod-name
 oc logs -f your-jms-consumer-pod-name
 ```
+<img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/749da649-255d-4206-87af-a7a2c521587e" />
 
 ## Info - Secure your Openshift Cluster and applications deployed in Openshift
 
