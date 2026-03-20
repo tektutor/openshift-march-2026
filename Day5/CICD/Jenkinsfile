@@ -8,25 +8,16 @@ spec:
   containers:
   - name: java-agent
     image: registry.access.redhat.com/ubi8/openjdk-17:latest
-    workingDir: /home/jenkins/agent
     command: ['cat']
     tty: true
     volumeMounts:
-    - name: shared-workspace
-      mountPath: /home/jenkins/agent
     - name: m2-cache
       mountPath: /home/jenkins/.m2
   - name: oc-client
     image: quay.io/openshift/origin-cli:latest
-    workingDir: /home/jenkins/agent
     command: ['cat']
     tty: true
-    volumeMounts:
-    - name: shared-workspace
-      mountPath: /home/jenkins/agent
   volumes:
-  - name: shared-workspace
-    emptyDir: {}
   - name: m2-cache
     emptyDir: {}
 """
