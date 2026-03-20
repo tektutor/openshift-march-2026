@@ -133,8 +133,8 @@ data:
 ## Lab - Deploying your JMS Producer
 ```
 oc new-project jegan
-oc create deploy jms-producer --image=tektutor/jms-producer:1.0
-oc create deploy jms-consumer --image=tektutor/jms-consumer:1.0
+oc create deploy jms-producer --image=image-registry.openshift-image-registry.svc:5000/openshift:jms-producer:latest
+oc create deploy jms-consumer --image=image-registry.openshift-image-registry.svc:5000/openshift/jms-consumer:latest
 
 oc get pods
 oc logs -f your-jms-producer-pod-name
