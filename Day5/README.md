@@ -875,11 +875,40 @@ oc start-build java-app-pipeline --follow
 <img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/80052043-63fd-45d1-945a-e0e2cdf385fe" />
 
 ## Certifications Recommended
+
+#### Recommended for Developers
 <pre>
-- Red Hat Openshift I - Containers & Kubernetes ( DO180 )
-- Red Hat Openshift Development II - Containerizing Applications ( DO288 )
-- Red Hat Openshift Application Developer Exam ( EX288 )
-- Red Hat Certified Specialist in Openshift Application Development
-- Red Hat Certified Specialist in Containers 
-- Red Hat Certified Architect (RHCA)
+- To prepare for EX288 Certification, you may attend the training that covers topics listed in 
+  Containers & Kubernetes Fundamentals (DO188) and Red Hat OpenShift Development II: Building Kubernetes Applications (DO288).
+- Red Hat doesn't mandate attending training before taking EX288 Certification, those who are technically hands-on will be able 
+  to clear the Certification with consistent preparation
+</pre>
+
+<pre>
+- Red Hat Certified Specialist in Containers (EX188)
+- Red Hat Certified Specialist in OpenShift Application Development (EX288)
+- Red Hat Certified Cloud-Native Developer (EX378) - Quarkus/Java Focused
+- Red Hat Certified Specialist in OpenShift AI (EX267)
+- Event-Driven Development (EX453 ) - Kafka/AMQ Streams
+- Building Resilient Microservices EX328 - Service Mesh/Istio
+</pre>
+
+#### Recommended for DevOps Engineers
+<pre>
+- Red Hat Certified Specialist in OpenShift Automation and Integration (EX380)
+- Red Hat Certified Cloud-Native Developer (RHCCD)
+- Red Hat Certified OpenShift Architect 
+- The Foundation: Red Hat Certified Engineer (EX294 - RHCE)
+- The Platform: EX288 (Developer) OR EX280 (Admin)
+- The Pipeline: EX288 (OpenShift Pipelines)
+- The Automation Pinnacle: Red Hat Certified Specialist in MultiCluster Management (EX480)
+</pre>
+
+#### Recommended for Administrators
+<pre>
+- Prerequisite: Red Hat Certified System Administrator (EX200 - RHCSA)
+- Core: Red Hat Certified Specialist in OpenShift Administration (EX280)
+- Advanced: Red Hat Certified Specialist in OpenShift Automation & Integration (EX380)
+- OpenShift Virtualization (EX316) - Running VMs alongside containers
+- OpenShift Data Foundation (EX370) - Managing cluster storage/ODF
 </pre>
