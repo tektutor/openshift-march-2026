@@ -26,33 +26,38 @@ spec:
 
     environment {
         APP_NAME = "hello-microservice"
+        // Force the absolute path to the project folder
+        PROJECT_DIR = "Day5/CICD/hello-springboot-microservice"
     }
 
     stages {
         stage('Compile & Package') {
             steps {
                 container('java-agent') {
-                    // This matches the folder in your tree output
-                    dir('Day5/CICD/hello-springboot-microservice') {
+                    dir("${env.PROJECT_DIR}") {
                         sh "mvn clean package -DskipTests"
+                        // DEBUG: Verify the file is actually there
+                        sh "ls -ld target" 
                     } 
                 }
             }
         }
 
-	stage('Build Custom Image') {
+        stage('Build Custom Image') {
             steps {
                 container('oc-client') {
                     script {
-                        // Enter the SAME folder on the shared volume
-                        dir('hello-springboot-microservice') {
+                        // Use the EXACT same variable to enter the folder
+                        dir("${env.PROJECT_DIR}") {
                             openshift.withCluster() {
                                 openshift.withProject() {
                                     if (!openshift.selector("bc", "${APP_NAME}-binary").exists()) {
                                         openshift.newBuild("--name=${APP_NAME}-binary", "--strategy=source", "--binary=true", "--image=registry.access.redhat.com/ubi8/openjdk-17:latest")
                                     }
 
-                                    echo "Uploading target folder to OpenShift..."
+                                    echo "Uploading target folder to OpenShift from: ${env.WORKSPACE}/${env.PROJECT_DIR}/target"
+                                    
+                                    // Trigger build - 'target/' is now relative to the PROJECT_DIR
                                     openshift.selector("bc", "${APP_NAME}-binary").startBuild("--from-dir=target/", "--wait")
                             
                                     def tag = "build-${env.BUILD_NUMBER}"
@@ -71,19 +76,15 @@ spec:
                     script {
                         openshift.withCluster() {
                             openshift.withProject() {
-                                // Apply the YAML manifests from the 'openshift' subdirectory
-                                dir('openshift') {
+                                // Update this path to be absolute relative to workspace as well
+                                dir("Day5/CICD/openshift") {
                                     sh "oc apply -f hello-deploy.yml"
                                     sh "oc apply -f hello-service.yml"
                                     sh "oc apply -f hello-route.yml"
                                 }
 
                                 def tag = "build-${env.BUILD_NUMBER}"
-                                
-                                // Update the deployment to use the specific build tag
                                 sh "oc set image deployment/${APP_NAME} ${APP_NAME}=image-registry.openshift-image-registry.svc:5000/\$(oc project -q)/${APP_NAME}:${tag}"
-                                
-                                // Monitor the rollout
                                 openshift.selector("deployment", APP_NAME).rollout().status()
                             }
                         }
