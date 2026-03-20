@@ -43,7 +43,7 @@ spec:
                     openshift.withCluster() {
                         openshift.withProject() {
                             def build = openshift.selector("bc", "hello-microservice-binary").startBuild(
-                                "--from-dir=hello-springboot-microservice/target/", 
+                                "--from-dir=Day5/CICD/hello-springboot-microservice/target/", 
                                 "--wait"
                             )
                     
@@ -64,9 +64,10 @@ spec:
                 script {
                     openshift.withCluster() {
                         openshift.withProject() {
-                            sh "oc apply -f openshift/hello-deploy.yml"
-                            sh "oc apply -f openshift/hello-service.yml"
-                            sh "oc apply -f openshift/hello-route.yml"
+                           dir('Day5/CICD/openshift') {
+                            sh "oc apply -f hello-deploy.yml"
+                            sh "oc apply -f hello-service.yml"
+                            sh "oc apply -f hello-route.yml"
 
                     	    def tag = "build-${env.BUILD_NUMBER}"
                     
@@ -74,6 +75,7 @@ spec:
                     
                             // Triggers rollout to the latest version of the image
                     	    openshift.selector("deployment", APP_NAME).rollout().status()
+                          }
                         }
                     }
                 }
