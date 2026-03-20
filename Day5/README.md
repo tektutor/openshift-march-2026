@@ -9,6 +9,13 @@ image-registry.openshift-image-registry.svc:5000/openshift/wordpress:latest
 image-registry.openshift-image-registry.svc:5000/openshift/mariadb:12.0.2
 </pre>
 
+## Info - ImageStream
+<pre>
+- Openshift ImageStream represents a folder inside Openshift's Internal Registry 
+- We can store multiple versions(tag) of the same image in a single OpenShift Imagestream
+</pre>
+
+
 ## Lab - Deploy Jenkins in Openshift
 
 Make sure your existing project is deleted
