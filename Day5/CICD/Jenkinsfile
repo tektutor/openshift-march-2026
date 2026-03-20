@@ -47,17 +47,22 @@ spec:
                 script {
                     openshift.withCluster() {
                         openshift.withProject() {
-                            def build = openshift.selector("bc", "hello-microservice-binary").startBuild(
-                                "--from-dir=hello-springboot-microservice/target/", 
-                                "--wait"
-                            )
-                    
-                            def tag = "build-${env.BUILD_NUMBER}"
-                    
-                            // Maps 'latest' to the specific build number tag in internal registry
-                            openshift.tag("hello-microservice:latest", "hello-microservice:${tag}")
-                    
-                            echo "Image successfully tagged as hello-microservice:${tag}"
+                          if (!openshift.selector("bc", "hello-microservice-binary").exists()) {
+                             echo "Binary BuildConfig not found. Creating it now..."
+                             openshift.newBuild("--name=hello-microservice-binary", 
+                                           "--strategy=source", 
+                                           "--binary=true", 
+                                           "--image=registry.access.redhat.com/ubi8/openjdk-17:latest")
+                          }
+
+                          def build = openshift.selector("bc", "hello-microservice-binary").startBuild(
+                               "--from-dir=hello-springboot-microservice/target/", 
+                               "--wait"
+                          )
+            
+                          def tag = "build-${env.BUILD_NUMBER}"
+                          openshift.tag("hello-microservice-binary:latest", "hello-microservice:${tag}")
+                          echo "Image successfully tagged as hello-microservice:${tag}
                         }
                     }
                 }
