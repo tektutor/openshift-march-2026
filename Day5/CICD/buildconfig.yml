@@ -18,6 +18,7 @@ spec:
     git:
       uri: 'https://github.com/tektutor/openshift-march-2026.git'
       ref: 'main'
+    contextDir: Day5/CICD
   
   triggers:
   - type: Generic 
