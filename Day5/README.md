@@ -295,7 +295,7 @@ oc logs -f your-jms-consumer-pod-name
 - Meanwhile, Oracle acquired Sun Microsystems 
 - Koshuke Kawaguchi founded a company called Cloudbees
 - When he quit Oracle, he had created a fork of Hubson branch and new branch was named as Jenkins
-- Cloudbess is the Enterprise variant of Jenkins
+- Cloudbees is the Enterprise variant of Jenkins
 - Jenkins has over 10000+ active opensource contributors around the globe
 </pre>
 
