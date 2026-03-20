@@ -9,7 +9,6 @@ image-registry.openshift-image-registry.svc:5000/openshift/wordpress:latest
 image-registry.openshift-image-registry.svc:5000/openshift/mariadb:12.0.2
 </pre>
 
-
 ## Info - Microservice Overview
 <pre>
 - Microservice is an architectural style where application is built as a collection of small, 
@@ -39,6 +38,108 @@ image-registry.openshift-image-registry.svc:5000/openshift/mariadb:12.0.2
   - Centralized Database
   - Scaling Limitations
 </pre>
+
+## Demo - Install Red Hat AMQ Broker Operator
+```
+mkdir -p openshift-jms-setup/{operators,broker,queues,application}
+cd openshift-jms-setup
+```
+
+Install AMQ Broker Operator - operators/amq-operator-subscription.yaml
+<pre>
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: amq-broker-rhel8
+  namespace: openshift-operators
+spec:
+  channel: 7.11.xcfa99cb8070a49ff88dc20531f8751b0
+  name: amq-broker-rhel8
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace  
+</pre>
+
+Create AMQ Broker Instance broker/amq-broker-instance.yaml
+<pre>
+apiVersion: broker.amq.io/v1beta1
+kind: ActiveMQArtemis
+metadata:
+  name: amq-broker
+  namespace: jms-demo
+spec:
+  deploymentPlan:
+    size: 1
+    image: registry.redhat.io/amq7/amq-broker-rhel8:7.11
+    requireLogin: false
+    persistenceEnabled: true
+  console:
+    expose: true
+  acceptors:
+    - name: amqp
+      protocols: amqp
+      port: 5672
+    - name: core
+      protocols: core
+      port: 61616  
+</pre>
+
+Create Queues - queues/order-queue.yaml
+<pre>
+apiVersion: broker.amq.io/v1beta1
+kind: ActiveMQArtemisAddress
+metadata:
+  name: order-queue
+  namespace: jms-demo
+spec:
+  addressName: order.queue
+  queueName: order.queue
+  routingType: anycast  
+</pre>
+
+Create Topics - queues/notification-topic.yamlLab - Horizontal Pod Auto-scaling based on CPU utilization
+<pre>
+apiVersion: broker.amq.io/v1beta1
+kind: ActiveMQArtemisAddress
+metadata:
+  name: notification-topic
+  namespace: jms-demo
+spec:
+  addressName: notification.topic
+  queueName: notification.topic
+  routingType: multicast  
+</pre>
+
+Create Application Configuration - application/configmap.yaml
+<pre>
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: jms-app-config
+  namespace: jms-demo
+data:
+  application.yml: |
+    spring:
+      activemq:
+        broker-url: tcp://amq-broker-hdls-svc:61616
+        user: admin
+        password: admin
+      jms:
+        pub-sub-domain: false
+    logging:
+      level:
+        com.example.jms: DEBUG  
+</pre>
+
+## Lab - Deploying your JMS Producer
+```
+oc new-project jegan
+oc create deploy jms-producer --image=tektutor/jms-producer:1.0
+oc create deploy jms-consumer --image=tektutor/jms-consumer:1.0
+
+oc get pods
+oc logs -f your-jms-producer-pod-name
+oc logs -f your-jms-consumer-pod-name
+```
 
 ## Info - Secure your Openshift Cluster and applications deployed in Openshift
 
