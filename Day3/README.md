@@ -108,23 +108,38 @@ chmod 700 get_helm.sh
 ./get_helm.sh
 ```
 
-
-
 ## Info - Persistent Volume (PV)
 <pre>
-- Persistent Volume is an external disk or shared path
-- Persistent Volume can be provisioned by Openshift Administrators either manually(static) or dynamically using storageclass
-- PV are created on the cluster scope, which means any application running within Openshift from any project namespace can bind and use it
-- Persistent Volume will usually capture the below attributes
-  - disk size in MiB/GiB
-  - access 
-    - ReadWriteOnce ( This means all Pods from a single Openshift node can read and write to the external disk )
-    - ReadWriteMany ( This means, all Pods from any node in Openshift can read and write to the external disk )
-- this external disk i.e Persistent Volume could be coming from
-  - NFS Server
-  - AWS S3 bucket
-  - AWS EBS - Elastic Block Storage or similar Storage Clusters
-  - Longhorn, etc.,
+- is an external storage used by applications that needs storage
+- is a piece of storage in the Openshift cluster that is provisioned by Openshift Administrator
+- it can be either manually provisioned by Openshift Administrator or Dynamically Provisioned
+- Persistent Volume can be be provisioned by following backends
+  - NFS
+  - iSCSI
+  - Ceph
+  - AWS EBS
+  - GlusterFS
+  - etc
+- PVs are cluster scoped, it is accessible by applications from any Project namespace
+- Persistent Volumes usually will have the follow properties
+  - Storage Size in Mi, Gi, Ti
+  - Access Mode
+    - ReadWriteOnce, ReadWriteMany, ReadOnlyMany, ReadOnlyOnce, ReadWriteOncePod
+  - StorageClass (optional) - in case provisioned dynamically
+  - Labels ( Optional )
+</pre>
+
+## Info - Persistent Volume Claim (PVC)
+<pre>
+- is a request for storage by your application
+- any application that needs external storage to peristent their application logs or data will have request by creating PVC
+- Project namespace scoped ( tied to a project )
+- Key Properties
+  - Storage Size in Mi, Gi, Ti, etc.,
+  - Access Mode
+  - StorageClass (Optional)
+  - Labels (Optional)
+- If the Storage Controller is able to find an exact match of PV as per your PVC request then it will let your PVC bound and use it in your application deployments
 </pre>
 
 ## Info - StorageClasss
@@ -136,12 +151,11 @@ chmod 700 get_helm.sh
   will automatically provision the request disk with the appropriate disk access and let your application use that storage
 </pre>
 
-## Info - Persistent Volume Claim (PVC)
-<pre>
-- Persistent Volume Claims are crated as part of your application i.e non-admins can create this
-- it will be always created under some project namespace
-- this is the way your application can request for external storage with specific permission with specific etc.,
-</pre>
+## Lab - Kindly check to verify NFS shared folder allocated for you
+Replace 'jegan' with your name
+```
+showmount -e | grep jegan
+```
 
 ## Info - ConfigMap
 <pre>
