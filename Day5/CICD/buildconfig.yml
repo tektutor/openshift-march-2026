@@ -1,0 +1,24 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: java-app-pipeline
+  labels:
+    app: hello-microservice 
+spec:
+  # This triggers the Jenkins Pipeline engine
+  strategy:
+    type: JenkinsPipeline
+    jenkinsPipelineStrategy:
+      # Path to your Jenkinsfile in the Git repo
+      jenkinsfilePath: Jenkinsfile 
+  
+  # Where your Jenkinsfile and Source Code live
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/tektutor/openshift-march-2026.git'
+      ref: 'main'
+  
+  triggers:
+    - type: GitHub
+    - type: ConfigChange

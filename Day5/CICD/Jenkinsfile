@@ -1,0 +1,85 @@
+pipeline {
+    agent {
+        kubernetes {
+            yaml """
+apiVersion: v1
+kind: Pod
+spec:
+  containers:
+  - name: java-agent
+    image: registry.access.redhat.com/ubi8/openjdk-17:latest
+    command: ['cat']
+    tty: true
+    volumeMounts:
+    - name: m2-cache
+      mountPath: /home/jenkins/.m2
+  volumes:
+  - name: m2-cache
+    emptyDir: {}
+"""
+        }
+    }
+
+    environment {
+        APP_NAME = "hello-microservice"
+        IMAGE_STREAM = "${APP_NAME}:latest"
+    }
+
+    stages {
+        stage('Compile & Package') {
+            steps {
+                container('java-agent') {
+                    // Corrected closing brace alignment
+                    dir('hello-springboot-microservice') {
+                        sh "mvn clean package -DskipTests"
+                    } 
+                }
+            }
+        }
+
+        stage('Build Custom Image') {
+            steps {
+                script {
+                    openshift.withCluster() {
+                        openshift.withProject() {
+                            // FIXED: 'startBuild' (removed the 'i')
+                            // FIXED: 'hello-springboot-microservice' (added the missing 'g')
+                            def build = openshift.selector("bc", "hello-microservice-binary").startBuild(
+                                "--from-dir=hello-springboot-microservice/target/", 
+                                "--wait"
+                            )
+                    
+                            def tag = "build-${env.BUILD_NUMBER}"
+                    
+                            // Maps 'latest' to the specific build number tag in internal registry
+                            openshift.tag("hello-microservice:latest", "hello-microservice:${tag}")
+                    
+                            echo "Image successfully tagged as hello-microservice:${tag}"
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Deploy to OpenShift') {
+            steps {
+                script {
+                    openshift.withCluster() {
+                        openshift.withProject() {
+                            sh "oc apply -f openshift/hello-deploy.yml"
+                            sh "oc apply -f openshift/hello-service.yml"
+                            sh "oc apply -f openshift/hello-route.yml"
+
+                    	    def tag = "build-${env.BUILD_NUMBER}"
+                    
+                    	    sh "oc set image deployment/${APP_NAME} ${APP_NAME}=image-registry.openshift-image-registry.svc:5000/\$(oc project -q)/${APP_NAME}:${tag}"
+                    
+                            // Triggers rollout to the latest version of the image
+                    	    openshift.selector("deployment", APP_NAME).rollout().status()
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
