@@ -48,7 +48,7 @@ spec:
                     openshift.withCluster() {
                         openshift.withProject() {
                             def build = openshift.selector("bc", "hello-microservice-binary").startBuild(
-                                "--from-dir=Day5/CICD/hello-springboot-microservice/target/", 
+                                "--from-dir=hello-springboot-microservice/target/", 
                                 "--wait"
                             )
                     
@@ -70,7 +70,7 @@ spec:
                 script {
                     openshift.withCluster() {
                         openshift.withProject() {
-                           dir('Day5/CICD/openshift') {
+                           dir('openshift') {
                             sh "oc apply -f hello-deploy.yml"
                             sh "oc apply -f hello-service.yml"
                             sh "oc apply -f hello-route.yml"
