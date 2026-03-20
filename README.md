@@ -1,8 +1,13 @@
 # Openshift March 2026
 
-## Kindly complete the pre-test from your Lab Machine
+## Kindly share your training feedback here
 <pre>
-https://forms.cloud.microsoft/r/DQ7nywyP3U
+https://forms.cloud.microsoft/r/C8KB480pnR 
+</pre>
+
+## Kindly complete the post-test from your Lab Machine
+<pre>
+https://forms.cloud.microsoft/r/gNrnGkUfWJ
 </pre>  
 
 ## About about lab environment

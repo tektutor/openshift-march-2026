@@ -9,6 +9,16 @@ image-registry.openshift-image-registry.svc:5000/openshift/wordpress:latest
 image-registry.openshift-image-registry.svc:5000/openshift/mariadb:12.0.2
 </pre>
 
+## Info - You can find Red Hat Base images here
+<pre>
+https://catalog.redhat.com/en/software/containers/explore
+</pre>
+
+## Info - You can find other Red Hat Openshift compatible images here
+<pre>
+https://catalog.redhat.com/en/search?searchType=Containers
+</pre>  
+
 ## Info - Microservice Overview
 <pre>
 - Microservice is an architectural style where application is built as a collection of small, 
@@ -875,6 +885,14 @@ oc start-build java-app-pipeline --follow
 <img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/fa6f0be6-741b-485a-8a18-79b6f719acb7" />
 <img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/80052043-63fd-45d1-945a-e0e2cdf385fe" />
 
+## Additional Lab - Do you want to see how etcd organizes data internally
+```
+oc exec -it etcd-master01.ocp4.palmeto.rog -c etcdctl -n openshift-etcd sh
+etcdctl get "/kubernetes.io/pods/jegan" --prefix=true
+etcdctl get "/kubernetes.io/deployments/jegan/nginx" --prefix=true
+exit
+```
+
 ## Certifications Recommended
 
 #### Recommended for Developers
@@ -913,3 +931,4 @@ oc start-build java-app-pipeline --follow
 - OpenShift Virtualization (EX316) - Running VMs alongside containers
 - OpenShift Data Foundation (EX370) - Managing cluster storage/ODF
 </pre>
+
