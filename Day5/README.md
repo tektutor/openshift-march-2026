@@ -96,7 +96,7 @@ spec:
   routingType: anycast  
 </pre>
 
-Create Topics - queues/notification-topic.yamlLab - Horizontal Pod Auto-scaling based on CPU utilization
+Create Topics - queues/notification-topic.yaml
 <pre>
 apiVersion: broker.amq.io/v1beta1
 kind: ActiveMQArtemisAddress
