@@ -105,6 +105,54 @@ oc label node worker03.ocp4.palmeto.org disk=ssd
 oc get pods -o wide
 ```
 
+## Lab - Ingress
+Note
+<pre>
+- Ingress provides a public url to expose multiple services using certain rules like path as prefix
+- Openshift Route uses Kubernetes Ingress under the hood
+- Unlike Openshift Route which forwards the request to only one Service, Ingress generally forward the call to multiple services based on rules
+- Ingress is a set of fowarding Rules
+- Ingress Controller running in Openshift Cluster, keeps looking for Ingress rules written from any Project namespace
+- Whenever Ingress Controller detects a new Ingress, or an existing ingress got updated or deleted it gets notifications via API Server events
+- Ingress Controller retrieves the rules from Ingress and it configures the Load Balancer so the Ingress rules will start working
+- for an Ingress to work in Kubernetes/Rancher/Openshift, 3 components should be there
+  1. Ingress ( Rule )
+  2. Ingress Controller 
+     - Nginx Ingress Controller
+     - HAProxy Ingress Controller
+     - Traefik Ingress Controller
+  3. Load Balancer 
+     - Nginx Load Balancer
+     - HAProxy Load Balancer
+     - Traefik Load Balancer
+</pre>
+
+Let's do this hands-on exercise to understand how Ingress can be created. In order to try out this exercise, we need couple of deployments
+```
+oc delete project jegan
+oc new-project jegan
+
+cd ~/openshift-march-2026
+git pull
+cd Day4/ingress
+ls -l
+
+oc apply -f hello-deploy.yml
+oc apply -f nginx-deploy.yml
+
+oc apply -f hello-svc.yml
+oc apply -f nginx-svc.yml
+
+oc get deploy,svc
+
+oc apply -f ingress.yml
+oc get ingress
+oc describe ingress/tektutor
+
+curl http://tektutor.apps.ocp4.palmeto.org/nginx
+curl http://tektutor.apps.ocp4.palmeto.org/hello
+```
+
 ## Lab - Creating an edge route( https ) to secure your application running in Red Hat Openshift
 ```
 oc delete project jegan
