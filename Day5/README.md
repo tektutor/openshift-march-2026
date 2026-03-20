@@ -42,8 +42,14 @@ git clone https://github.com/tektutor/openshift-march-2026.git
 cd openshift-march-2026/Day5/CICD
 ls -l
 oc project jegan
+oc create imagestream hello-microservice
 oc create secret generic generic-webhook-secret --from-literal=WebHookSecretKey=trainee-lab-123
 oc apply -f buildconfig.yml
 oc policy add-role-to-user edit system:serviceaccount:jegan:default
 oc start-build java-app-pipeline --follow
 ```
+<img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/b52756cc-b62c-4b6e-a50c-0c8ff4ce2c3e" />
+<img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/c4865b82-7981-43bb-b806-73c3275101d5" />
+<img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/25eb333a-b131-4b5d-94d5-dfee3d95526b" />
+<img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/55809d9a-1833-47bf-ad70-96e8c9c491e7" />
+<img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/08eab2ba-b4ca-465d-9efc-16db422882a5" />
