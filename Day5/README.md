@@ -873,3 +873,13 @@ oc start-build java-app-pipeline --follow
 <img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/30e36489-889c-41e0-abc4-e6b1805bd276" />
 <img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/fa6f0be6-741b-485a-8a18-79b6f719acb7" />
 <img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/80052043-63fd-45d1-945a-e0e2cdf385fe" />
+
+## Certifications Recommended
+<pre>
+- Red Hat Openshift I - Containers & Kubernetes ( DO180 )
+- Red Hat Openshift Development II - Containerizing Applications ( DO288 )
+- Red Hat Openshift Application Developer Exam ( EX288 )
+- Red Hat Certified Specialist in Openshift Application Development
+- Red Hat Certified Specialist in Containers 
+- Red Hat Certified Architect (RHCA)
+</pre>
