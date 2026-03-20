@@ -174,4 +174,129 @@ ls -l
 
 <img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/37a1a6e1-3309-4c44-860f-6d55a16b44f6" />
 
+To update 'jegan' with your name
+```
+cd ~/openshift-march-2026
+git pull
+cd Day3/wordpress-with-configmaps-and-secrets
+sed -i 's/jegan/nitesh/g' *.yml
+```
 
+Deploying wordpress and mariadb
+```
+cd ~/openshift-march-2026
+cd Day3/wordpress-with-configmaps-and-secrets
+oc project jegan
+./deploy.sh
+```
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/df7161ae-42f1-458c-a85a-2f431ec4badf" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/c74da9a7-98ff-4ee8-86f1-7ea90ebb06f8" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/9e2e7b88-9f14-44a0-8f2c-bdadf4e786a5" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/241ac314-6a0e-4670-8027-6f1bcbc0be99" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/87e97bda-3f5c-4cb3-8140-62c61fb60b02" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/74f95a91-28eb-49f0-b2e3-5c936f7d7003" />
+
+
+## Lab - Creating a Helm chart for our wordpress, mariadb multi-pod application
+Make sure you delete your existing openshift project
+```
+oc delete project jegan
+oc new-project jegan
+```
+
+```
+cd ~/openshift-march-2026
+git pull
+cd Day3
+mkdir -p helm/manifest-scripts
+cp wordpress-with-configmaps-and-secrets/*.yml helm/manifest-scripts
+cd helm
+
+helm create wordpress
+tree wordpress
+
+cd wordpress/templates
+rm -rf *
+cd ../..
+
+cp manifest-scripts/* wordpress/templates
+cd wordpress
+echo "" > values.yaml
+cd ..
+tree wordpress
+```
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/aeccbdf6-3561-4376-bc33-965efc96cc4a" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/a6d5bef8-19f1-4131-aa09-9d225e1432de" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/9867b3ea-1349-4ebd-887b-808d329b7325" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/1ecfae91-0401-48bb-84bf-9550601b89ac" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/23ca87fe-b78b-4dd9-b06d-50828c662732" />
+
+
+Let's clean up the folders and files created by our previous wordpress deployment
+```
+showmount -e | grep jegan
+cd /var/nfs/jegan/mysql
+rm -rf *
+cd ../wordpress
+rm -rf *
+```
+
+Let's create Helm chart(installer package) for wordpress & mariadb multi-pod application
+```
+cd ~/openshift-march-2026/Day3/helm
+helm package wordpress
+ls -l
+helm list
+
+oc get all
+
+helm install wp-jegan wordpress-0.1.0.tgz
+
+oc get pods
+```
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/c44dd582-0c8c-4c9e-8103-c49f0b663398" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/b6a35c73-7881-4f89-8bda-a1066b4037bb" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/aefb0997-035b-42e9-9d53-21561a9e67ad" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/8541eb2a-9208-4a7d-8672-b6b82b1799bf" />
+
+## Lab - Deploying application into Openshift using S2I Docker Strategy
+
+Note
+<pre>
+- When we the S2I(Source to Image), we can just provide application source code along with Dockerfile
+- Openshift will clone the GitHub repo
+- It will look for Dockerfile, it generates BuildConfig 
+- It will create an instance of Build(this will create pod to perform Build) using BuidlConfig
+  and its follows the instructions present in the Dockerfile to build your
+  application into application executable, then it builds custom image
+- the newly build custom image will then get pushed into Openshift Internal Image Registry
+- it then deploys your application from the Openshift Internal Image Registry
+</pre>
+
+```
+oc delete project jegan
+oc new-project jegan
+
+oc new-app --name hello-micorservice https://github.com/tektutor/spring-ms.git --strategy=docker
+oc expose svc/hello-microservice
+
+oc logs -f bc/hello-microservice
+```
+
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/d3f28137-0a5c-485a-8f48-83396f840be3" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/ec4418b5-dad6-4aeb-98f7-76fe49636a60" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/4d9fc777-50ae-47e0-98af-5abde01301e8" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/722e9e2d-0b37-40b7-8c25-38d382523674" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/ed3fd97e-f005-472f-87e2-0f841b59344b" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/94b085ce-5564-498c-aa28-00c4c63ba19f" />
+
+## Lab - Deploying application into Openshift using S2I Source Strategy
+```
+oc delete project jegan
+oc new-project jegan
+
+oc new-app --name hello-micorservice https://github.com/tektutor/spring-ms.git --strategy=source
+oc expose svc/hello-microservice
+
+oc logs -f bc/hello-microservice
+```
