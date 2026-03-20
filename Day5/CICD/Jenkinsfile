@@ -26,15 +26,14 @@ spec:
 
     environment {
         APP_NAME = "hello-microservice"
-        IMAGE_STREAM = "${APP_NAME}:latest"
     }
 
     stages {
         stage('Compile & Package') {
             steps {
                 container('java-agent') {
-                    // Corrected closing brace alignment
-                    dir('Day5/CICD/hello-springboot-microservice') {
+                    // Path is relative to contextDir (Day5/CICD)
+                    dir('hello-springboot-microservice') {
                         sh "mvn clean package -DskipTests"
                     } 
                 }
@@ -44,49 +43,51 @@ spec:
         stage('Build Custom Image') {
             steps {
                 container('oc-client') {
-                script {
-                    openshift.withCluster() {
-                        openshift.withProject() {
-                          if (!openshift.selector("bc", "hello-microservice-binary").exists()) {
-                             echo "Binary BuildConfig not found. Creating it now..."
-                             openshift.newBuild("--name=hello-microservice-binary", 
-                                           "--strategy=source", 
-                                           "--binary=true", 
-                                           "--image=registry.access.redhat.com/ubi8/openjdk-17:latest")
-                          }
+                    script {
+                        openshift.withCluster() {
+                            openshift.withProject() {
+                                if (!openshift.selector("bc", "hello-microservice-binary").exists()) {
+                                    echo "Binary BuildConfig not found. Creating it now..."
+                                    openshift.newBuild("--name=hello-microservice-binary", 
+                                                       "--strategy=source", 
+                                                       "--binary=true", 
+                                                       "--image=registry.access.redhat.com/ubi8/openjdk-17:latest")
+                                }
 
-                          def build = openshift.selector("bc", "hello-microservice-binary").startBuild(
-                               "--from-dir=hello-springboot-microservice/target/", 
-                               "--wait"
-                          )
-            
-                          def tag = "build-${env.BUILD_NUMBER}"
-                          openshift.tag("hello-microservice-binary:latest", "hello-microservice:${tag}")
-                          echo "Image successfully tagged as hello-microservice:${tag}
+                                openshift.selector("bc", "hello-microservice-binary").startBuild(
+                                    "--from-dir=hello-springboot-microservice/target/", 
+                                    "--wait"
+                                )
+                        
+                                def tag = "build-${env.BUILD_NUMBER}"
+                                openshift.tag("hello-microservice-binary:latest", "hello-microservice:${tag}")
+                                // FIXED: Added missing quote and parenthesis
+                                echo "Image successfully tagged as hello-microservice:${tag}"
+                            }
                         }
                     }
                 }
-              }
             }
         }
 
         stage('Deploy to OpenShift') {
             steps {
-                script {
-                    openshift.withCluster() {
-                        openshift.withProject() {
-                           dir('openshift') {
-                            sh "oc apply -f hello-deploy.yml"
-                            sh "oc apply -f hello-service.yml"
-                            sh "oc apply -f hello-route.yml"
+                container('oc-client') {
+                    script {
+                        openshift.withCluster() {
+                            openshift.withProject() {
+                                // Path is relative to contextDir (Day5/CICD)
+                                dir('openshift') {
+                                    sh "oc apply -f hello-deploy.yml"
+                                    sh "oc apply -f hello-service.yml"
+                                    sh "oc apply -f hello-route.yml"
+                                }
 
-                    	    def tag = "build-${env.BUILD_NUMBER}"
-                    
-                    	    sh "oc set image deployment/${APP_NAME} ${APP_NAME}=image-registry.openshift-image-registry.svc:5000/\$(oc project -q)/${APP_NAME}:${tag}"
-                    
-                            // Triggers rollout to the latest version of the image
-                    	    openshift.selector("deployment", APP_NAME).rollout().status()
-                          }
+                                def tag = "build-${env.BUILD_NUMBER}"
+                                sh "oc set image deployment/${APP_NAME} ${APP_NAME}=image-registry.openshift-image-registry.svc:5000/\$(oc project -q)/${APP_NAME}:${tag}"
+                                
+                                openshift.selector("deployment", APP_NAME).rollout().status()
+                            }
                         }
                     }
                 }
