@@ -34,3 +34,27 @@ Note
 - API Server receives these updates, retrieves the Pod database entry from etcd and updates the Pod status
 </pre>
 ![Openshift](openshift-internals.png)
+
+
+## Lab - Horizontal Pod Auto-scaling based on CPU utilization
+```
+oc delete project jegan
+oc new-project jegan
+
+cd ~
+git clone https://github.com/tektutor/openshift-march-2026.git
+cd openshift-march-2026
+cd Day4/auto-scaling
+oc create -f hello-deploy.yml --save-config
+oc get pods
+oc create -f hello-hpa.yml --save-config
+
+oc expose deploy/nginx --port=8080
+oc expose svc/nginx
+oc get route
+```
+
+We need to stress the pod with more traffic
+```
+ab -k -n 200000 -c 500 https://nginx-jegan.apps.ocp4.palmeto.org/
+```
