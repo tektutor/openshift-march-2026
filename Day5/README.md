@@ -18,7 +18,7 @@ oc delete project jegan
 
 Let's create a new project and deploy Jenkins within Openshift
 ```
-oc new-project jegn
+oc new-project jegan
 oc new-app jenkins-ephemeral
 oc status
 oc get pods
@@ -34,3 +34,14 @@ oc get pods
 <img width="1913" height="1116" alt="image" src="https://github.com/user-attachments/assets/b2632f27-870c-40ac-b2ed-c7ed46b0da9c" />
 <img width="1913" height="1116" alt="image" src="https://github.com/user-attachments/assets/82abb3b9-59c2-4a88-86a8-ec30896c776b" />
 <img width="1913" height="1116" alt="image" src="https://github.com/user-attachments/assets/9b07e2a1-aa4a-495d-8cdd-68913c31b901" />
+
+## Lab - Setup Jenkins CI CD Pipeline in Openshift
+```
+cd ~
+git clone https://github.com/tektutor/openshift-march-2026.git
+cd openshift-march-2026/Day5/CICD
+ls -l
+oc project jegan
+oc create secret generic generic-webhook-secret --from-literal=WebHookSecretKey=trainee-lab-123
+oc apply -f buildconfig.yml
+```
