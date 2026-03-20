@@ -198,19 +198,6 @@ image-registry.openshift-image-registry.svc:5000/openshift/mariadb:12.0.2
 - Jenkins has over 10000+ active opensource contributors around the globe
 </pre>
 
-## Demo - Setup Jenkins
-For detailed, step by step instructions to setup Jenkins you may follow my medium blog here
-<pre>
-https://medium.com/tektutor/ci-cd-with-maven-github-docker-jenkins-aca28c252fec  
-https://www.tektutor.org/ci-cd-with-maven-github-docker-jenkins/
-</pre>
-
-```
-cd ~
-wget https://get.jenkins.io/war-stable/2.541.1/jenkins.war
-java -jar ./jenkins.war --httpPort=9090
-```
-
 ## Info - Subnet
 <pre>
 - Range of IP address
