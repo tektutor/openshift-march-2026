@@ -48,7 +48,12 @@ oc apply -f buildconfig.yml
 oc policy add-role-to-user edit system:serviceaccount:jegan:default
 oc start-build java-app-pipeline --follow
 ```
-<img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/b52756cc-b62c-4b6e-a50c-0c8ff4ce2c3e" />
+<img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/eea7a6f3-caad-4e56-a1bc-f2d29dd48b4c" />
+<img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/0bb4038d-7361-41d3-b5c7-f89dbf6087de" />
+<img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/3678d4c7-dba9-42b4-97ed-b46737c21af4" />
+<img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/8a0fa0bd-78e0-488b-aca5-363a328e484c" />
+<img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/22f192fc-786e-4007-83dd-5c6deca9f0a4" />
+
 <img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/c4865b82-7981-43bb-b806-73c3275101d5" />
 <img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/25eb333a-b131-4b5d-94d5-dfee3d95526b" />
 <img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/55809d9a-1833-47bf-ad70-96e8c9c491e7" />
