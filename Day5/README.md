@@ -217,8 +217,6 @@ image-registry.openshift-image-registry.svc:5000/openshift/mariadb:12.0.2
   - How many IP addresses are there in 10.131.0.0/24 - 256 IP addresses are there
 </pre>
 
-
-
 ## Flannel Network Model
 <pre>
 Flannel is a simple and easy way to configure a layer 3 network fabric designed for Kubernetes. 
@@ -436,7 +434,7 @@ sudo tcpdump -i eth0 -nn 'udp port 8472' -v
 # Capture decapsulated packet on cni0
 sudo tcpdump -i cni0 -nn icmp -v
 # 15:30:45.123470 IP (tos 0x0, ttl 63, len 84) 10.244.1.10 > 10.244.2.10: 
-#   ICMP echo request, id 1234, seq 1, length 64
+# ICMP echo request, id 1234, seq 1, length 64
 ```
 
 Indide Pod3
@@ -584,13 +582,16 @@ Architecture Components
 </pre>
 
 #### Usecases
+<pre>
 - Multi-cloud deployments where encryption is required
 - Strict network segmentation requirements
 - Legacy applications that need specific networking features
 - Development environments requiring flexible networking
 - Comparison with OpenShift SDN
+</pre>
 
 #### Limitations
+<pre>
 - Performance overhead especially with encryption enabled
 - Additional complexity compared to default OpenShift SDN
 - Resource consumption from running additional networking components
@@ -598,6 +599,7 @@ Architecture Components
 - Weave Network provides a robust networking solution for OpenShift,
   particularly useful when advanced networking features like - encryption and comprehensive
   network policies are required.
+</pre>
   
 <pre>
 +------------------------+---------------------------+---------------------------+
