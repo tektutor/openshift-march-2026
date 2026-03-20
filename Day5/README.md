@@ -9,6 +9,16 @@ image-registry.openshift-image-registry.svc:5000/openshift/wordpress:latest
 image-registry.openshift-image-registry.svc:5000/openshift/mariadb:12.0.2
 </pre>
 
+## Info - You can find Red Hat Base images here
+<pre>
+https://catalog.redhat.com/en/software/containers/explore
+</pre>
+
+## Info - You can find other Red Hat Openshift compatible images here
+<pre>
+https://catalog.redhat.com/en/search?searchType=Containers
+</pre>  
+
 ## Info - Microservice Overview
 <pre>
 - Microservice is an architectural style where application is built as a collection of small, 
