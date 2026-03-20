@@ -20,5 +20,7 @@ spec:
       ref: 'main'
   
   triggers:
-    - type: GitHub
-    - type: ConfigChange
+  - type: Generic 
+    generic:
+      secretReference:
+        name: generic-webhook-secret
