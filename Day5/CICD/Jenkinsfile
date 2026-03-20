@@ -70,13 +70,15 @@ spec:
             }
         }
 
-        stage('Deploy to OpenShift') {
+	stage('Deploy to OpenShift') {
             steps {
                 container('oc-client') {
                     script {
                         openshift.withCluster() {
                             openshift.withProject() {
-                                // Update this path to be absolute relative to workspace as well
+                                // Get the current namespace explicitly
+                                def namespace = openshift.project() 
+                                
                                 dir("Day5/CICD/openshift") {
                                     sh "oc apply -f hello-deploy.yml"
                                     sh "oc apply -f hello-service.yml"
@@ -84,13 +86,17 @@ spec:
                                 }
 
                                 def tag = "build-${env.BUILD_NUMBER}"
-                                sh "oc set image deployment/${APP_NAME} ${APP_NAME}=image-registry.openshift-image-registry.svc:5000/\$(oc project -q)/${APP_NAME}:${tag}"
-                                openshift.selector("deployment", APP_NAME).rollout().status()
+                                
+                                // FIX 1: Updated deployment name to match your 'oc apply' output
+                                // FIX 2: Used the 'namespace' variable instead of 'oc project -q'
+                                sh "oc set image deployment/hello-springboot-microservice hello-springboot-microservice=image-registry.openshift-image-registry.svc:5000/${namespace}/${APP_NAME}:${tag}"
+                                
+                                // Monitor the rollout
+                                openshift.selector("deployment", "hello-springboot-microservice").rollout().status()
                             }
                         }
                     }
                 }
             }
         }
-    }
 }
