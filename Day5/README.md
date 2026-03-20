@@ -44,5 +44,6 @@ ls -l
 oc project jegan
 oc create secret generic generic-webhook-secret --from-literal=WebHookSecretKey=trainee-lab-123
 oc apply -f buildconfig.yml
+oc policy add-role-to-user edit system:serviceaccount:jegan:default
 oc start-build java-app-pipeline --follow
 ```
