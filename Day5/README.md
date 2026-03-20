@@ -33,7 +33,7 @@ image-registry.openshift-image-registry.svc:5000/openshift/mariadb:12.0.2
   - Data Access Layer
 - Key properties of Monolithic applications
   - Single codebase
-  - Tighly coupled components
+  - Tightly coupled components
   - Entire application is deployed as a single unit
   - Centralized Database
   - Scaling Limitations
