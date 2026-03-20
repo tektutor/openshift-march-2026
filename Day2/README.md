@@ -172,6 +172,89 @@ https://www.tektutor.org/openshift-ci-cd-with-tekton/
 - Deployment has one to many ReplicaSets
 </pre>
 
+## Info - DaemonSet
+<pre>
+- DaemonSet is managed by DaemonSet Controller
+- DaemonSet Controller detects the total number of nodes available in the cluster and it will create that many Pods automatically
+- each Pod will scheduled on one of the nodes 
+- this is not used in normal scenarios
+- For instance, 
+  - to collect performance metrics, there has to be one Prometheus Pod running in each node
+  - in this kind of scenario, one can use DaemonSet
+</pre>
+
+## Info - Job
+<pre>
+- any one time activity, we can run as Job
+- the activity may run sometime and then it might complete, such application can be deployed as a Job in Kubernetes/Openshift
+</pre>
+
+## Info - CronJob
+<pre>
+- any activity that must be schedule to run a particular day particular time
+- this must be repeated daily, weekly or monthly or yearly then it can be deployed as a CronJob
+</pre>
+
+## Info - StatefulSet
+<pre>
+- this is used to deploy stateful applications
+- if you wish to deploy a cluster of db server Pod
+- assume you wish to create 3 mysql Pods which runs as a cluster
+  - ie. when a particular table record is updated in one instance of mysql Pod
+  - it automatically syncs with other 2 instances
+- StatefulSet Controller guarantees 
+  - each Pod that is created for StatefulSet is guaranteed to have a stable name
+  - For instance, assuming the statefulset name is mysql then the first Pod will be named mysql-0, 
+    the second Pod will be named mysql-1 and so on
+  - Even if the mysql-0 Pod or any Pod in Statefulset get deleted the new mysql Pod is assigned the same sticky name
+- First mysql-0 Pod behaves like a Master mysql server
+  - here read/write is allowed
+- Second and Third instance i.e mysql-1 and mysl-2 can be created as a ready-only database
+- Second instance will get synchronized pulling updates from mysql-1 and then it will let the mysql-2 get synchronized from mysql-1
+</pre>
+
+## Info - ImageStream
+<pre>
+- Openshift ImageStream represents a folder inside Openshift's Internal Registry 
+- We can store multiple versions(tag) of the same image in a single OpenShift Imagestream
+</pre>
+
+## References
+<pre>
+https://medium.com/tektutor/using-metallb-loadbalancer-with-bare-metal-openshift-onprem-4230944bfa35  
+https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/building_applications/deployments
+</pre>  
+
+## Info - ClusterIP Service
+<pre>
+- a ClusterIP Service acts as an internal load balancer that provides a stable, virtual IP address for a set of pods 
+- this allows other components in the cluster to communicate with those pods reliably, even as individual 
+  pods are created or destroyed
+</pre>
+
+## Info - NodePort Service
+<pre>
+- NodePort service is a configuration in OpenShift/Kubernetes that exposes a service on a specific, 
+  static port across every node in the cluster 
+- allows external traffic to reach your application by hitting any node's IP address at that designated port
+- Kubernetes/Openshift reserves a port available from a specific range in the range 30000–32767 
+</pre>
+
+## Info - LoadBalancer Service
+<pre>
+- a standard way to expose an application to the internet or an external network
+- this is normally used in public cloud environment like AWS, Azure, etc.,
+- In a on-prem Kubernetes/Openshift, LoadBalancer is not supported out of the box.  We could use
+  MetalLB operator to support LoadBalancer Service in a local setup.
+- LoadBalancer builds upon the NodePort and ClusterIP types, essentially automating the creation 
+  of an external load balancer in your infrastructure to route traffic into the cluster
+- Kubernetes/OpenShift communicates with MetalLB to provision load balancer
+- MetalLB assigns a unique, stable External IP or DNS name to the service.
+- Traffic enters through the external load balancer, which then forwards it to a NodePort on one of the cluster nodes
+- From there, it is routed via the ClusterIP to the final Pod. 
+</pre>
+
 ## Info - Control Plane Components
 The below components only runs in the master node, or wherever they run that is called master node
 <pre>
@@ -227,6 +310,48 @@ The below components only runs in the master node, or wherever they run that is 
 - it is responsible to identify a healthy node where a newly created Pod can be scheduled
 - the scheduler makes a REST call to API Server with the scheduling recommendataion about a Pod
 </pre>
+
+## Info - Helm
+<pre>
+- is a package manager for Kubernetes and Openshift
+- with helm, we can deploy/undeploy/upgrade/downgrade applications into Kubernetes/Openshift
+- our custom application manifest files can be packaged as Helm Chart
+- Helm Chart is the packaged application - it is like a installed package
+- Helm Chart is nothing but a tar ball file that follows a specific folder structure
+- Openshift comes with Helm pre-integrated 
+</pre>
+
+## Info - Node Affinity
+<pre>
+- Let's say your application is disk intensive
+- It would be preferable if your application is deployed onto a Openshift node that has an SSD faster disk
+- this is where the Node Affinity comes into picture
+- there are two types of Node Affinity that can be request
+  1. Preferred
+     - in this case, the scheduler will look for nodes that matches your application criteria if it finds a match
+       it will deploy your application Pods on those matching nodes, else it will as usual deploy anywhere
+  2. Required
+     - in this case, the scheduler will look for nodes that matches your application criteria, if it finds a match
+       it will deploy your application pods on those matching nodes, else it put your Pods in pending until it finds such a node
+</pre>
+
+## Info - Openshift S2I
+<pre>
+- Unlike Kubernetes, Openshift apart from deploying applications from readily available or pre-build container images, 
+  one could deploy applications from source code from your version control
+- Openshift S2I supports many different Strategies
+  1. Docker
+  2. Source
+  3. Custom
+  4. Pipeline(Jenkins/Tekton)
+  5. Binary(S2I Binary)
+</pre>
+
+
+## Lab - Openshift command-line login 
+```
+oc login https://api.ocp4.palmeto.org:6443 -u kubeadmin -p W5kfC-Utit3-hc2o3-EvaCy --insecure-skip-tls-verify=true
+```
 
 ## Lab - Check your lab environment
 ```
