@@ -348,6 +348,9 @@ The below components only runs in the master node, or wherever they run that is 
 </pre>
 
 
+## Info - Red Hat Openshift Architecture
+<img width="1380" height="752" alt="image" src="https://github.com/user-attachments/assets/7728a2da-2cd2-4006-b28b-1bb9d9eee871" />
+
 ## Lab - Openshift command-line login 
 ```
 oc login https://api.ocp4.palmeto.org:6443 -u kubeadmin -p W5kfC-Utit3-hc2o3-EvaCy --insecure-skip-tls-verify=true
